@@ -1,0 +1,41 @@
+LINUX COMMANDS
+1. pwd = present working directory.
+
+2. ~ = home.
+
+3. ls = list content in a directory.
+	ls -a = show hidden files.
+	ls -R = list all files in sub-directories
+
+4. touch (file) = create a file.
+
+5. cat = to read the contents a file.
+
+6. head / tail = to show the first/last 10 lines of a file respectively.
+
+7. clear or ctrl+L = to clear terminal.
+
+8. which (command) = learn the location of a command within storage.
+
+9. info / man (command) = to get more info about a command.
+
+10. cd = change directory.
+	cd - = to return to a previously visited directory.
+	cd .. = to go back one step.
+
+11. mkdir = make a directory.
+
+12. rmdir = remove a directory.
+
+13. rm = remove file/directory.
+	rm -r = remove file/directory recursively.
+
+14. cp = to copy files.
+	cp -r = to copy recursively.
+
+15. mv = to move and rename files.
+
+16. echo = to interpret strings as standard values.
+
+17. variables to store values
+18. $ to name a variable.

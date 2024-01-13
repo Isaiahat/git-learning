@@ -1,0 +1,21 @@
+ GIT COMMANDS
+
+1. git init = initialise git to monitor current repository.
+
+2. rm -rf .git = disengage git monitoring.
+
+3. git add (file) = to stage files and modifications to be noted by git.
+	git add . = to stage all files at once.
+
+4. git restore = restore modified changes before commit.
+
+5. git log = to show history of git activity.
+
+6. git status = to show the status.
+
+7. git commit (file) = to save finalised changes.
+	git commit -m = to commit and add comment.
+
+8. git push = 
+
+9. git pull = 

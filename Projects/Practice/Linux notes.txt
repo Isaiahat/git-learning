@@ -1,4 +1,5 @@
 LINUX COMMANDS
+to connect to another VM, use: ssh -i (pemfile) (username)(public host)
 1. pwd = present working directory.
 
 2. ~ = home.

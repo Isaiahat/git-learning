@@ -1,0 +1,56 @@
+[33mcommit 6c3e6023d67a2e77acfa98f1d4168c72b7ffaedf[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Isaiahat <toluwaniadeoti@gmail.com>
+Date:   Sun Jan 14 05:32:10 2024 +0000
+
+    minor edits with vsc
+
+[33mcommit 931b3845efd2122f869f30c18b8eeb4f818a6edb[m
+Author: Isaiahat <toluwaniadeoti@gmail.com>
+Date:   Sun Jan 14 01:16:57 2024 +0000
+
+    updated git readme file
+
+[33mcommit 40efbc472ecc49de78ece2255bc6d78e0392610f[m
+Author: Isaiahat <148476503+Isaiahat@users.noreply.github.com>
+Date:   Sun Jan 14 01:07:36 2024 +0000
+
+    Create Git README.md
+    
+    Added a readme file for GIT
+
+[33mcommit 02cd9dada75fa2dfcf33f2d83180f569c439b798[m
+Merge: 484d9f1 6b21625
+Author: Isaiahat <toluwaniadeoti@gmail.com>
+Date:   Sat Jan 13 23:49:05 2024 +0000
+
+    Merge branch 'main' of github.com:Isaiahat/git-learning
+
+[33mcommit 484d9f18cc8d14bf6a6e4d6bd32e7cd5acb340f8[m
+Author: Isaiahat <toluwaniadeoti@gmail.com>
+Date:   Sat Jan 13 22:44:22 2024 +0000
+
+    git error 4 added
+
+[33mcommit fc8a4188a304b4d074b1572321b5f07a66dfad97[m
+Author: Isaiahat <toluwaniadeoti@gmail.com>
+Date:   Sat Jan 13 05:44:12 2024 +0000
+
+    updated changes
+
+[33mcommit d009e01e44fb3219eb50a18e75196dbd2be890be[m
+Author: Isaiahat <toluwaniadeoti@gmail.com>
+Date:   Sat Jan 13 04:58:55 2024 +0000
+
+    performed branch merging
+
+[33mcommit 817ea251faa491d6f2b819a5466f728998dea123[m
+Author: Isaiahat <toluwaniadeoti@gmail.com>
+Date:   Sat Jan 13 04:32:06 2024 +0000
+
+    First files
+
+[33mcommit 6b21625268ec83de049cf4f0973c42cab6188ddb[m
+Author: Isaiahat <toluwaniadeoti@gmail.com>
+Date:   Wed Jan 10 06:53:40 2024 +0000
+
+    first commit

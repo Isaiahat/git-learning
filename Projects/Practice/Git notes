@@ -4,7 +4,7 @@
 
 2. rm -rf .git = disengage git monitoring.
 
-3. git add (file) = to stage files and modifications to be noted by git.
+3. git add (file) = tostat stage files and modifications to be noted by git.
 	git add . = to stage all files at once.
 
 4. git restore = restore modified changes before commit.
@@ -16,6 +16,22 @@
 7. git commit (file) = to save finalised changes.
 	git commit -m = to commit and add comment.
 
-8. git push = 
+8. git push origin main= to export to origin/github
 
-9. git pull = 
+9. git pull = to import from origin/github
+
+10. git branch = to list branches
+	git branch -d (branch) = to delete branch.
+	git branch -m (branch name) = to change branch name.
+
+11. git checkout (branch name) = to change branch
+	git checkout -b (branch name) = to make a new branch.
+
+12. git merge (temp branch) = to merge changes
+
+13. git clone (link to remote repo) = to clone a remote git repo
+
+14. 
+
+
+15. 

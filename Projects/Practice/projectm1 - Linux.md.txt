@@ -152,7 +152,7 @@ Example: (_image_)
 
 
 
-11.touch command:
+11. #### **touch**
 
 Command Syntax:
 
@@ -166,7 +166,6 @@ Example: (_image_)
 
 
 12. #### **locate**
-Command Syntax:
 
 The locate command can find a file in the database system.
 Moreover, adding the -i argument will turn off case sensitivity, so you can search for a file even if you don’t remember its
@@ -175,21 +174,24 @@ To look for content that contains two or more words, use an asterisk (*). For ex
 locate -i school*note
 The command will search for files that contain the words school and note, whether they use uppercase or lowercase
 letters.
-13. find command:
+
+
+
+13. #### **find**
+
 Use the find command to search for files within a specific directory and perform subsequent operations. Here’s the general
 syntax:
 find [option] [path] [expression]
 You can edit to suit your case
 For example, you want to look for a file called sql_commands.sh within the home directory and its subfolders:
 find /home -name sql_commands.sh
-Copy Below Code
-Copy Below Code
-Copy Below Code
-1/17/24, 2:50 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 10/25
 Here are other variations when using find:
-find -name filename.txt to find files in the current directory. find ./ -type d -name directoryname to look for directories.
-14. grep command:
+find -name filename.txt to find files in the current directory. find ./ -type d -name directoryname to look for directories
+
+
+
+14. #### **grep**
+
 Another basic Linux command on the list is grep or global regular expression print. It lets you find a word by searching
 through all the texts in a specific file.
 Once the grep command finds a match, it prints all lines that contain the specific pattern. This command helps filter
@@ -197,10 +199,14 @@ through large log files.
 For example, you want to search for the word blue in the notepad.txt file:
 grep values sql_commands.sh
 The command’s output will display lines that contain blue.
-15. df command:
-Use the df command to report the system’s disk space usage, shown in percentage and kilobyte (KB). Here’s the general
-syntax:
-df [options] [file]
+
+Example: (_image_)
+
+15. #### **df**
+command syntax: `df [options] [file]`
+
+Use the df command to report the system’s disk space usage, shown in percentage and kilobyte (KB).
+
 For example, enter the following command if you want to see the current directory’s system disk space usage in a humanreadable format:
 df -h
 Copy Below Code
@@ -211,8 +217,13 @@ https://app.dareyio.com/learning/project 11/25
 These are some acceptable options to use:
 df -m displays information on the file system usage in MBs. df -k displays file system usage in KBs. df -T shows the file
 system type in a new column.
-You can try all these on your own.
-16. du command:
+
+Example: (_image_)
+
+
+16. #### **du**
+command syntax: `du /home/ubuntu/CommandsLinux`
+
 If you want to check how much space a file or a directory takes up, use the du command. You can run this command to
 identify which part of the system uses the storage excessively.
 Remember, you must specify the directory path when using the du command. For example, to check
@@ -221,115 +232,102 @@ du /home/ubuntu/CommandsLinux
 Adding a flag to the du command will modify the operation, such as:
 -s offers the total size of a specified folder. -m provides folder and file information in MB k displays information in KB. -h
 informs the last modification date of the displayed folders and files.
-You can try all these on your own.
-17. head command:
+
+Example: (_image_)
+
+
+17. #### **head**
+command syntax: `head <option> file`
+
 The head command allows you to view the first ten lines of a text. Adding an option lets you change the number of lines
 shown. The head command is also used to output piped data to the CLI.
-Copy Below Code
-1/17/24, 2:50 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 12/25
-Here’s the general syntax:
-head [option] [file]
+
 For instance, you want to view the first ten lines of deploy1.yml, located in the current directory:
 head deploy1.yml
 -n or –lines prints the first customized number of lines. For example, enter head -n 5 filename.txt to show the first five lines
 of filename.txt. -c or –bytes prints the first customized number of bytes of each file. -q or –quiet will not print headers
 specifying the file name.
-18.tail command:
+
+Example: (_image_)
+
+
+
+
+18. #### **tail** 
+Command Syntax:
+
 The tail command displays the last ten lines of a file. It allows users to check whether a file has new data or to read error
 messages.
-Here’s the general format:
-tail [option] [file]
-For example, you want to show the last ten lines of the deploy1.yml file:
-tail -n 5 deploy1.yml
-Copy Below Code
-Copy Below Code
-Copy Below Code
-Copy Below Code
-1/17/24, 2:50 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 13/25
-19. diff command:
+
+Example: (_image_)
+
+
+
+
+19. #### **diff**
+Command Syntax:
+
 Short for difference, the diff command compares two contents of a file line by line. After analyzing them, it will display the
 parts that do not match.
 Programmers often use the diff command to alter a program instead of rewriting the entire source code.
-Here’s the general format:
-diff [option] file1 file2
+
 For example, you want to compare two files – deploy1.yml and deploy2.yml
 diff deploy1.yml deploy2.yml
 Here are some acceptable options to add:
 -c displays the difference between two files in a context form. -u displays the output without redundant information. -i
 makes the diff command case insensitive.
-You can try these on your own.
-20.tar command:
+
+Example: (_image_)
+
+
+
+
+20. #### **tar**
+Command Syntax: `tar -cvf <filename.tar> <directory>`
+
 The tar command archives multiple files into a TAR file – a common Linux format similar to ZIP, with optional compression.
-Copy Below Code
-Copy Below Code
-1/17/24, 2:50 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 14/25
-Here’s the basic syntax:
-tar [options] [archive_file] [file or directory to be archived]
+
 For instance, you want to create a new TAR archive named newarchive.tar in the /home/ubuntu directory:
 you can edit the code below to suit your purpose.
 tar -cvf newarchive.tar /home/ubuntu
 The tar command accepts many options, such as: -x extracts a file.
 -t lists the content of a file.
 -u archives and adds to an existing archive file.
-Introduction to Linux and Basic Commands
-Linux is a family of open-source Unix operating systems based on the Linux Kernel. They include Ubuntu, Fedora, Debian,
-openSUSE, and Red Hat. Using Linux to manage a Virtual Private Server (VPS) is common practice.
-When operating Linux, you need to use a shell – a program that gives you access to the operating system’s services. Most
-Linux distributions use a graphical user interface (GUI), making them beginner-friendly.
-However, we recommend utilizing the command-line interface (CLI) because it’s quicker and offers more control. Tasks
-that require multiple steps on the GUI can be done in a matter of seconds by entering commands into the CLI.
-So if you want to use Linux, learning the common utilities or commands will go a long way.
-What Is a Linux Command?
-A Linux command is a program or utility that runs on the CLI – a console that interacts with the system via texts and
-processes. It’s similar to the Command Prompt application in Windows.
-Linux commands are executed on Terminal by pressing Enter at the end of the line. You can run commands to perform
-various tasks, from package installation to user management and file manipulation.
-Here’s what a Linux command’s general syntax looks like:
-CommandName [option(s)] [parameter(s)]
-Copy Below Code
-Copy Below Code
-Copy Below Code
-1/17/24, 2:50 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 15/25
-A command may contain an option or a parameter. In some cases, it can still run without them. These are the three most
-common parts of a command:
-CommandName is the rule that you want to perform. Option or flag modifies a command’s operation. To invoke it, use
-hyphens (–) or double hyphens (—).
-Parameter or argument specifies any necessary information for the command.
-TAKE NOTE
-1. All Linux commands are case-sensitive
-2. For persons who do not have access to a linux machine you can access a light weight linux machine here free of
-charges
-If you have clicked on the link above, pick a linux machine:
-Then, wait for sometime for it to come up. There you go! you have your linux machine. With it you can practice all your
-linux commands
-1/17/24, 2:50 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 16/25
-File Permissions and Ownership
-21. chmod command:
+
+
+
+### **File Permissions and Ownership**
+&nbsp; 
+
+21. #### **chmod**
+Command Syntax: `chmod [option] [permission] [file_name]`
+
 chmod is a common command that modifies a file or directory’s read, write, and execute permissions. In Linux, each file is
 associated with three user classes – owner, group member, and others.
-Here’s the basic syntax:
-chmod [option] [permission] [file_name]
+
 For example, the owner is currently the only one with full permissions to change note.txt. To allow group members and
 others to read, write, and execute the file, change it to the -rwxrwxrwx permission type, whose numeric value is 777:
 chmod 777 deploy1.yml
-Copy Below Code
-Copy Below Code
-1/17/24, 2:50 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 17/25
+
 This command supports many options, including:
 -c or –changes displays information when a change is made. -f or –silent suppresses the error messages. -v or –verbose
 displays a diagnostic for each processed file.
+
+Example: (_image_)
+
+
+
+
 22. chown command:
+Command Syntax: `chown user1 file`
+
 The chown command lets you change the ownership of a file, directory, or symbolic link to a specified username.
 Here’s the basic format:
 chown [option] owner[:group] file(s)
-For example, you want to make linuxuser2 the owner of filename.txt:
-chown linuxuser2 filename.txt
+For example, you want to make Bob the owner of file.txt:
+
+
+
 23. jobs command:
 A job is a process that the shell starts. The jobs command will display all the running processes along with their statuses.
 Remember that this command is only available in csh, bash, tcsh, and ksh shells.

@@ -8,7 +8,7 @@ When using sudo, the system will prompt users to authenticate themselves with a 
 log a timestamp as a tracker. By default, every root user can run sudo commands for 15 minutes/session.
 If you try to run sudo in the command line without authenticating yourself, the system will log the activity as a security
 event.
-Example: (_image_) 
+Example: (_image_)  
 
 
 

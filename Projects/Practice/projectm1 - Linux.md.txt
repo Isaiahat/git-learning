@@ -1,3 +1,36 @@
+# **Description**
+
+> This is an exercise on the Linux operating system. I will be discussing what Linux is, how it operates, some basic commands and functionalities in Linux
+
+
+## **Overview:**
+> ### **What is Linux?**
+> ### **what is a command line?**
+> ### **Basic commands in Linux
+
+
+### **What is Linux?** 
+> Linux® is an open source operating system (OS). An operating system is the software that directly manages a system’s hardware and resources, like CPU, memory, and storage. The OS sits between applications and hardware and makes the connections between all of your software and the physical resources that do the work.
+
+
+### **What is a command line?**
+> The command line is a text interface to one's computer. It is often referred to as the shell, terminal, console, prompt or various other names. 
+
+The command line is where you ask software to perform hardware actions that point-and-click graphical user interfaces (GUIs) simply can't ask. 
+
+Command lines are available on many operating systems—proprietary or open source. But it’s usually associated with Linux, because both command lines and open source software, together, give users unrestricted access to their computer.
+
+
+### **basic commands in Linux**
+
+In this exercise, I will be discussing two categories of Linux commands- in line with their respective functions. These two categories are:
+> 1. File Manipulation
+> 2. File Permissions and Ownership
+
+
+
+
+
 1.### **File Manipulation**
 1. #### **sudo**
 Command syntax: `sudo <option> apt upgrade`
@@ -469,49 +502,56 @@ Example: (_image_)
 
 
 33. #### **hostname**
-command syntax:
+command syntax: `hostname <option>`
 
-Run the hostname command to know the system’s hostname. You can execute it with or without an option. Here’s the
-general syntax:
-hostname [option]
+Run the hostname command to know the system’s hostname. You can execute it with or without an option. 
+
 There are many optional flags to use, including:
 -a or –alias displays the hostname’s alias. -A or –all-fqdns displays the machine’s Fully Qualified Domain Name (FQDN). -i
 or –ip-address displays the machine’s IP address. For example, enter the following command to know your computer’s IP
 address:
 hostname -i
-34. useradd, userdel commands:
+
+Example: (_image_)
+
+
+
+34. #### **useradd, userdel**
+command syntax: 
+> `useradd <option> <usernane>`
+> to set password `paaswd <pass combination>`
+> `userdel <username>`
+
 Linux is a multi-user system, meaning more than one person can use it simultaneously. useradd is used to create a new
 account, while the passwd command allows you to add a password. Only those with root privileges or sudo can run the
 useradd command.
 When you use the useradd command, it performs some major changes:
 Edits the /etc/passwd, /etc/shadow, /etc/group, and /etc/gshadow files for the newly created accounts. Creates and
-populates a home directory for the user. Sets file permissions and ownerships to the home directory. Here’s the basic
-syntax:
-useradd [option] username
-To set the password:
-passwd the_password_combination
-For example, to add a new person named John, enter the following command simultaneously:
-useradd John
-Copy Below Code
-Copy Below Code
-Copy Below Code
-Copy Below Code
-Copy Below Code
-1/17/24, 2:50 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 23/25
-passwd 123456789
-To delete a user account, use the userdel command:
-userdel username
-35. apt-get command:
+populates a home directory for the user. Sets file permissions and ownerships to the home directory.
+
+ Example: (_image_)
+
+
+
+35. #### **apt-get**
+command syntax: `apt-get <option> <command or package>`
 apt-get is a command line tool for handling Advanced Package Tool (APT) libraries in Linux. It lets you retrieve information
 and bundles from authenticated sources to manage, update, remove, and install software and its dependencies.
 Running the apt-get command requires you to use sudo or root privileges.
-Here’s the main syntax:
-apt-get [options] (command)
+
 These are the most common commands you can add to apt-get:
 update synchronizes the package files from their sources. upgrade installs the latest version of all installed packages.
 check updates the package cache and checks broken dependencies.
-36. nano, vi, jed commands:
+
+Example: (_image_)
+
+
+
+36. #### **nano, vi, jed**
+command syntax:
+> `nano <file.txt>`
+> `vi <file.txt>`
+
 Linux allows users to edit and manage files via a text editor, such as nano, vi, or jed. nano and vi come with the operating
 system, while jed has to be installed.
 The nano command denotes keywords and can work with most languages. To use it, enter the following command:
@@ -520,17 +560,21 @@ vi uses two operating modes to work – insert and command. insert is used to ed
 the command performs operations, such as saving, opening, copying, and pasting a file.
 To use vi on a file, enter:
 vi [filename]
-Copy Below Code
-Copy Below Code
-Copy Below Code
-Copy Below Code
-Copy Below Code
-1/17/24, 2:50 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 24/25
+
+
 jed has a drop-down menu interface that allows users to perform actions without entering keyboard combinations or
 commands. Like vi, it has modes to load modules or plugins to write specific texts.
 To open the program, simply enter jed to the command line.
-37. alias, unalias commands:
+
+Example: (_image_)
+
+
+
+37. #### **alias, unalias**
+command syntax:
+> `alias <alias name>`
+> `unalias <alias name>`
+
 alias allows you to create a shortcut with the same functionality as a command, file name, or text. When executed, it
 instructs the shell to replace one string with another.
 To use the alias command, enter this syntax:
@@ -538,9 +582,14 @@ alias Name=String
 For example, you want to make k the alias for the kill command:
 alias k=’kill’
 On the other hand, the unalias command deletes an existing alias.
-Here’s what the general syntax looks like:
-unalias [alias_name]
-38. su command:
+
+Example: (_image_)
+
+
+
+38. #### **su**
+command syntax: 
+
 The switch user or su command allows you to run a program as a different user. It changes the administrative account in
 the current log-in session. This command is especially beneficial for accessing the system through SSH or using the GUI
 display manager when the root user is unavailable.
@@ -558,7 +607,13 @@ https://app.dareyio.com/learning/project 25/25
 -p or –preserve-environment keeps the same shell environment, consisting HOME, SHELL, USER, and LOGNAME. -s or –
 shell lets you specify a different shell environment to run. -l or –login runs a login script to switch to a different username.
 Executing it requires you to enter the user’s password.
-39. htop command:
+
+
+
+
+
+39. #### **htop** 
+ 
 The htop command is an interactive program that monitors system resources and server processes in real time. It is
 available on most Linux distributions, and you can install it using the default package manager.
 Compared to the top command, htop has many improvements and additional features, such as mouse operation and visual
@@ -568,7 +623,12 @@ htop [options]
 You can also add options, such as:
 -d or –delay shows the delay between updates in tenths of seconds. -C or –no-color enables the monochrome mode. -h or –
 help displays the help message and exit.
-40. ps command:
+
+
+
+
+40. #### **ps** 
+
 The process status or ps command produces a snapshot of all running processes in your system. The static results are
 taken from the virtual files in the /proc file system.
 Executing the ps command without an option or argument will list the running processes in the shell along with:

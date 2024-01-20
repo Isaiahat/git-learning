@@ -1,37 +1,34 @@
 # **Description**
 
-> This is an exercise on the Linux operating system. I will be discussing what Linux is, how it operates, some basic commands and functionalities in Linux
+This is an exercise on the Linux operating system and it what follows, I shall briefly discuss what Linux is, how it operates, some basic commands and functionalities in Linux
 
 
 ## **Overview:**
-> ### **What is Linux?**
-> ### **what is a command line?**
-> ### **Basic commands in Linux
+  ### **What is Linux?**
+  ### **what is a command line?**
+  ### **Basic commands in Linux**
+<br>
 
-
+  
 ### **What is Linux?** 
-> Linux® is an open source operating system (OS). An operating system is the software that directly manages a system’s hardware and resources, like CPU, memory, and storage. The OS sits between applications and hardware and makes the connections between all of your software and the physical resources that do the work.
+ Linux® is an open source operating system (OS). An operating system is the software that directly manages a system’s hardware and resources, like CPU, memory, and storage. The OS sits between applications and hardware and makes the connections between all of your software and the physical resources that do the work.
+<br>
 
 
 ### **What is a command line?**
-> The command line is a text interface to one's computer. It is often referred to as the shell, terminal, console, prompt or various other names. 
-
+ The command line is a text interface to one's computer. It is often referred to as the shell, terminal, console, prompt or various other names. 
 The command line is where you ask software to perform hardware actions that point-and-click graphical user interfaces (GUIs) simply can't ask. 
-
 Command lines are available on many operating systems—proprietary or open source. But it’s usually associated with Linux, because both command lines and open source software, together, give users unrestricted access to their computer.
 
 
-### **basic commands in Linux**
+### **Basic commands in Linux**
 
 In this exercise, I will be discussing two categories of Linux commands- in line with their respective functions. These two categories are:
 > 1. File Manipulation
 > 2. File Permissions and Ownership
+<br>
 
-
-
-
-
-1.### **File Manipulation**
+   ### **File Manipulation**
 1. #### **sudo**
 Command syntax: `sudo <option> apt upgrade`
 
@@ -40,10 +37,12 @@ administrative or root permissions.
 When using sudo, the system will prompt users to authenticate themselves with a password. Then, the Linux system will
 log a timestamp as a tracker. By default, every root user can run sudo commands for 15 minutes/session.
 If you try to run sudo in the command line without authenticating yourself, the system will log the activity as a security
-event.
+event.<br>
+
 Example: (_image_)  
-
-
+![Sudo - Run as administrator](https://github.com/Isaiahat/git-learning/assets/148476503/02306cd9-34cf-44b7-b961-80dd8264d5a5)
+<br>
+<br>
 
 2. #### **pwd**
 command syntax: `pwd <option>`
@@ -52,10 +51,13 @@ Use the pwd command to find the path of your current/present working directory. 
 current path – a path of all the directories that starts with a forward slash (/). 
 It has two acceptable options:
 -L or –logical prints environment variable content, including symbolic links.
--P or –physical prints the actual path of the current directory.
+-P or –physical prints the actual path of the current directory.<br>
+
 Example: (_image_) 
+![pwd command - show working directory](https://github.com/Isaiahat/git-learning/assets/148476503/9dd8a78b-59d7-4d1c-82b8-2ac6fc284f80)
 
-
+<br>
+<br>
 
 3. #### **cd**
 Command syntax: `cd <option>`
@@ -73,12 +75,9 @@ or
 cd CommandsLinux
 
 Example: (_image_) 
-
-
-
-
-
-
+![cd - change directory](https://github.com/Isaiahat/git-learning/assets/148476503/6a77b36a-99d9-4d8b-a76d-7b4d14e5eb65)
+<br>
+<br>
 
 4. #### **ls command**
 command syntax: `ls <option>`
@@ -94,23 +93,23 @@ lists all the files in the subdirectories
 ls -a
 shows hidden files in addition to the visible ones.
 ls -lh
-shows the file sizes in easily readable formats, such as KB, MB, GB, and TB.
+shows the file sizes in easily readable formats, such as KB, MB, GB, and TB.<br>
 
 Example: (_image_) 
-
-
-
-
+![ls - list contents in a directory](https://github.com/Isaiahat/git-learning/assets/148476503/961b6572-be15-486a-a42e-c7e930c996a4)
+<br>
+<br>
 
 5. #### **cat**
 Command syntax: `cat filename1.txt`
 Concatenate, or cat, is one of the most frequently used Linux commands. It lists, combines, and writes file content to the
-standard output.
+standard output.<br>
 
 Example: (_image_) 
+![cat command - read file content](https://github.com/Isaiahat/git-learning/assets/148476503/8b682082-4676-40d2-a5d3-c41e085b8a67)
 
-
-
+<br>
+<br>
 
 6. #### **cp** 
 Command syntax: `cp <option> file1 file2 ~/desktop/folder/`
@@ -122,23 +121,28 @@ To copy the content of a file to a new file in the same directory, enter cp foll
 as show below:
 cp filename1.txt filename2.txt
 To copy an entire directory, pass the -R flag before typing the source directory, followed by the destination directory:
-cp -R /home/username/Documents /home/username/Documents_backup
+cp -R /home/username/Documents /home/username/Documents_backup <br>
 
 Example: (_image_) 
+![cp - copy files](https://github.com/Isaiahat/git-learning/assets/148476503/81a6517b-4423-4c38-96e6-a3f71de71f65)
+![cp - keeping file copy](https://github.com/Isaiahat/git-learning/assets/148476503/facbc9b3-e74a-46b8-b549-b2cdb6e74fb2)
+![cp - copy files recursively](https://github.com/Isaiahat/git-learning/assets/148476503/6eb565f2-581e-4448-89d1-c3d4a2b00463)
 
+<br>
+<br>
 
 7. #### **mv**
 Command syntax: `mv <option> file1 file2 ~/desktop/folder/`
 
 The primary use of the mv command is to move and rename files and directories. Additionally, it doesn’t produce an output
 upon execution.
-Simply type mv followed by the filename and the destination directory. As below:
+Simply type mv followed by the filename and the destination directory. As below: <br>
 
 Example: (_image_) 
+![mv - move files, folders and rename](https://github.com/Isaiahat/git-learning/assets/148476503/6f926d72-bbbb-4477-a50e-5323d548e225)
 
-
-
-
+<br>
+<br>
 
 8. #### **mkdir**
 Command syntax: `mkdir <option> folder`

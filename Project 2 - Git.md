@@ -117,6 +117,61 @@ Example:(_push to github repository_) <br> ![4 - git push](https://github.com/Is
  <br>
 
 ##### Cloning a remote git repository.
+In the last section, We successfully added a remote git repository and pushed our story in the local repository. 
+Additionally, we can also import a repository from Github to our local computer, create a branch and work on them. 
+We do this by using the `Git clone` command.
+The git clone command helps us make a copy of remote repository in our local machine. See it as a git tool for downloading
+remote repository into our local machine. The command is as follows: `git clone (repo http or ssh)`
+<br>
 
+Example:(_git clone_) <br> ![4 - git http link](https://github.com/Isaiahat/git-learning/assets/148476503/e8bde68d-d6fb-46cc-bacf-9a8b17042bf8) 
+![Git clone](https://github.com/Isaiahat/git-learning/assets/148476503/e62bfeb2-aeea-4fe7-8014-c522b6ea8c10)
+
+ <br>
 
 ### Branch management and tagging. 
+##### Introduction to Markdown Syntax
+Markdown syntax is a lightweight markup language that is widely used for formatting plain text. It allows you to add
+formatting elements to your text without using complex HTML or other formatting languages. Markdown is commonly
+used for creating documents, README files, forum posts, and even web pages.
+Here is the most commonly used markdown syntax elements:
+1. Headings: To create heading, use the hash symbol at the beginning of the line. The number of hash symbol used
+indicate the level of the heading. <br>
+
+Example:(_git clone_) <br> ![MD - heading](https://github.com/Isaiahat/git-learning/assets/148476503/220e9347-7a5b-434e-a9d7-140d3856fab6)
+
+
+2. Emphasis: asterisks or underscore is used to Emphasis text
+<br>
+
+Example:(_italics_bold_) <br> ![md - italic_bold](https://github.com/Isaiahat/git-learning/assets/148476503/57ee2aed-51f6-43cd-b5bb-6b7f55297514)
+
+
+
+3. Lists: markdown has support for both ordered and unorderd list
+unordered list example:
+<br>
+Example:(_unordered_):
+ ![md - unordered list](https://github.com/Isaiahat/git-learning/assets/148476503/3553960f-c016-4972-a17e-fa7f5d3c68f1) 
+ <br> 
+
+ordered list example:
+<br>
+
+Example:(_ordered list_) <br> ![md - ordered list](https://github.com/Isaiahat/git-learning/assets/148476503/afaa178d-21fc-4230-a664-10feaf006f64)
+
+
+4. Links: : To create a hyperlink, use square brackets for the link text followed by parentheses containing the URL.<br>
+
+Example:(_md hyperlink_) <br>  ![md - hyperlink](https://github.com/Isaiahat/git-learning/assets/148476503/dc50dda8-5563-4b76-aed8-d759fd2fb1db)
+
+
+5. Images: To display an image, use an exclamation mark followed by square brackets for the alt text and parentheses
+containing the image URL.
+Example:![md - adding image](https://github.com/Isaiahat/git-learning/assets/148476503/ccfafb2d-bd10-4c84-824d-ca4e97112ed4)
+
+
+7. Code: To display code or code snippets, use backticks to enclose the code.
+example:![md - add code](https://github.com/Isaiahat/git-learning/assets/148476503/abb1ea6f-6e97-4c31-b2f6-f13f6e149ee8)
+
+

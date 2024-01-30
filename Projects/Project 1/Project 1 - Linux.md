@@ -28,6 +28,7 @@ In this exercise, I will be discussing two categories of Linux commands- in line
 > 2. File Permissions and Ownership
 <br>
 
+
    ### **File Manipulation**
 1. #### **sudo**
 Command syntax: `sudo <option> apt upgrade`

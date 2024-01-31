@@ -306,7 +306,7 @@ The tail command displays the last ten lines of a file. It allows users to check
 messages.
 
 Example: (_image_)
-
+![Tail](<Images/tail - show last 10 lines of a file..png>)
 
 
 
@@ -324,7 +324,7 @@ Here are some acceptable options to add:
 makes the diff command case insensitive.
 
 Example: (_image_)
-
+![Alt text](<Images/diff command - compare 2x different files.png>)
 
 
 
@@ -339,6 +339,9 @@ tar -cvf newarchive.tar /home/ubuntu
 The tar command accepts many options, such as: -x extracts a file.
 -t lists the content of a file.
 -u archives and adds to an existing archive file.
+
+Example: (_image_)
+![Alt text](<Images/tar command - create archive file.png>)
 
 
 
@@ -360,7 +363,7 @@ This command supports many options, including:
 displays a diagnostic for each processed file.
 
 Example: (_image_)
-
+![Alt text](<Images/Chmod command - change file mode.png>)
 
 
 
@@ -373,15 +376,16 @@ chown [option] owner[:group] file(s)
 For example, you want to make Bob the owner of file.txt:
 
 Example: (_image_)
+![Alt text](<Images/Chown command - change file ownership.png>)
 
 
 
 23. #### **jobs**
-Command syntax: ``
+Command syntax: `jobs [options]`
+
 A job is a process that the shell starts. The jobs command will display all the running processes along with their statuses.
 Remember that this command is only available in csh, bash, tcsh, and ksh shells.
-This is the basic syntax:
-jobs [options] jobID
+
 To check the status of jobs in the current shell, simply enter jobs to the CLI.
 Here are some options you can use:
 -l lists process IDs along with their information. -n lists jobs whose statuses have changed since the last notification. -p lists
@@ -408,31 +412,29 @@ kill SIGKILL 63773
 
 
 25. #### **ping**
-Command syntax: 
-
+Command syntax: `ping [option] [hostname_or_IP_address]`
 
 The ping command is one of the most used basic Linux commands for checking whether a network or a server is reachable.
 In addition, it is used to troubleshoot various connectivity issues.
 Here’s the general format:
-ping [option] [hostname_or_IP_address]
+
 For example, you want to know whether you can connect to Google and measure its response time:
 ping google.com
 
 Example: (_image_)
-
+![Alt text](<Images/ping command - check if a network or server is reachable.png>)
 
 
 26. #### **wget**
-Command syntax: 
-
-Example: (_image_)
+Command syntax: `wget <option> <url>`
 
 The Linux command line lets you download files from the internet using the wget command. It works in the background
 without hindering other running processes.
 The wget command retrieves files using HTTP, HTTPS, and FTP protocols. It can perform recursive downloads, which
 transfer website parts by following directory structures and links, creating local versions of the web pages.
 
-
+Example: (_image_)
+![Alt text](<Images/wget command - download file from supported websites.png>)
 
 
 27. #### **uname**
@@ -445,10 +447,11 @@ These are the acceptable options to use:
 -a prints all the system information. -s prints the kernel name. -n prints the system’s node hostname.
 
 Example: (_image_)
+![Alt text](<Images/uname command - unix or linux name.png>)
 
 
 28.#### **top**
-command syntax:
+command syntax: `top`
 
 The top command in Linux Terminal will display all the running processes and a dynamic real-time view of the current
 system. It sums up the resource utilization, from CPU to memory usage.
@@ -456,7 +459,7 @@ The top command can also help you identify and terminate a process that may use 
 To run the command, simply enter top into the CLI.
 
 Example: (_image_)
-
+![Alt text](<Images/top command - see all runnning processes.png>)
 
 
 29. #### **history** 
@@ -464,12 +467,13 @@ command syntax: `history <option>`
 
 With history, the system will list up to 500 previously executed commands, allowing you to reuse them without reentering. Keep in mind that only users with sudo privileges can execute this command. How this utility runs also depends
 on which Linux shell you use.
-To run it, enter the command below:
-history [option]
+
 This command supports many options, such as:
 -c clears the complete history list. -d offset deletes the history entry at the OFFSET position. -a appends history lines.
 
 Example: (_image_)
+![Alt text](<Images/history command - show commands history.png>)
+
 
 
 30. #### **man**
@@ -482,7 +486,7 @@ Executable programs or shell commands System calls Library calls Games Special f
 System administration commands Kernel routines Miscellaneous 
 
 Example: (_image_)
-
+![Alt text](<Images/man command - manual.png>)
 
 
 31. #### **echo**
@@ -495,6 +499,7 @@ plays sound alert. \b removes spaces in between a text. \c produces no further o
 disables the interpretation of backslash escapes.
 
 Example: (_image_)
+![Alt text](<Images/echo - write strings as output.png>)
 
 
 32. #### **zip, unzip**
@@ -511,6 +516,8 @@ For example, you have a file named note.txt that you want to compress into archi
 zip archive.zip note.txt
 
 Example: (_image_)
+![Alt text](<Images/zip and unzip - compress files into zip file.png>)
+
 
 
 
@@ -526,6 +533,7 @@ address:
 hostname -i
 
 Example: (_image_)
+
 
 
 

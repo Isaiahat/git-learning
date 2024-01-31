@@ -42,8 +42,7 @@ event.<br>
 
 Example: (_image_)  
 ![Sudo - Run as administrator](https://github.com/Isaiahat/git-learning/assets/148476503/02306cd9-34cf-44b7-b961-80dd8264d5a5)
-<br>
-<br>
+
 
 2. #### **pwd**
 command syntax: `pwd <option>`
@@ -57,8 +56,6 @@ It has two acceptable options:
 Example: (_image_) 
 ![pwd command - show working directory](https://github.com/Isaiahat/git-learning/assets/148476503/9dd8a78b-59d7-4d1c-82b8-2ac6fc284f80)
 
-<br>
-<br>
 
 3. #### **cd**
 Command syntax: `cd <option>`
@@ -77,8 +74,7 @@ cd CommandsLinux
 
 Example: (_image_) 
 ![cd - change directory](https://github.com/Isaiahat/git-learning/assets/148476503/6a77b36a-99d9-4d8b-a76d-7b4d14e5eb65)
-<br>
-<br>
+
 
 4. #### **ls command**
 command syntax: `ls <option>`
@@ -98,8 +94,7 @@ shows the file sizes in easily readable formats, such as KB, MB, GB, and TB.<br>
 
 Example: (_image_) 
 ![ls - list contents in a directory](https://github.com/Isaiahat/git-learning/assets/148476503/961b6572-be15-486a-a42e-c7e930c996a4)
-<br>
-<br>
+
 
 5. #### **cat**
 Command syntax: `cat filename1.txt`
@@ -109,8 +104,6 @@ standard output.<br>
 Example: (_image_) 
 ![cat command - read file content](https://github.com/Isaiahat/git-learning/assets/148476503/8b682082-4676-40d2-a5d3-c41e085b8a67)
 
-<br>
-<br>
 
 6. #### **cp** 
 Command syntax: `cp <option> file1 file2 ~/desktop/folder/`
@@ -129,8 +122,7 @@ Example: (_image_)
 ![cp - keeping file copy](https://github.com/Isaiahat/git-learning/assets/148476503/facbc9b3-e74a-46b8-b549-b2cdb6e74fb2)
 ![cp - copy files recursively](https://github.com/Isaiahat/git-learning/assets/148476503/6eb565f2-581e-4448-89d1-c3d4a2b00463)
 
-<br>
-<br>
+
 
 7. #### **mv**
 Command syntax: `mv <option> file1 file2 ~/desktop/folder/`
@@ -142,8 +134,7 @@ Simply type mv followed by the filename and the destination directory. As below:
 Example: (_image_) 
 ![mv - move files, folders and rename](https://github.com/Isaiahat/git-learning/assets/148476503/6f926d72-bbbb-4477-a50e-5323d548e225)
 
-<br>
-<br>
+
 
 8. #### **mkdir**
 Command syntax: `mkdir <option> folder`
@@ -157,7 +148,6 @@ Example: (_image_)
 
 
 
-
 9. #### **rmdir** 
 Command syntax: `rmdir <option> folder`
 
@@ -168,7 +158,6 @@ rmdir -p Music/Songs
 
 Example: (_image_) 
 ![rmdir - remove directory](https://github.com/Isaiahat/git-learning/assets/148476503/7916d219-70e8-4d17-b737-7be99cac2264)
-
 
 
 
@@ -190,9 +179,6 @@ Example: (_image_)
 
 
 
-
-
-
 11. #### **touch**
 
 Command Syntax: `touch (file.txt)`
@@ -201,9 +187,6 @@ The touch command allows you to create an empty file or generate and modify a ti
 
 Example: (_image_) 
 ![Touch - create an empty file](https://github.com/Isaiahat/git-learning/assets/148476503/095ce26b-7fa4-4ddd-bafe-b208f616afb2)
-
-
-
 
 
 
@@ -554,6 +537,7 @@ populates a home directory for the user. Sets file permissions and ownerships to
 
 
 
+
 35. #### **apt-get**
 command syntax: `apt-get <option> <command or package>`
 apt-get is a command line tool for handling Advanced Package Tool (APT) libraries in Linux. It lets you retrieve information
@@ -576,19 +560,19 @@ command syntax:
 Linux allows users to edit and manage files via a text editor, such as nano, vi, or jed. nano and vi come with the operating
 system, while jed has to be installed.
 The nano command denotes keywords and can work with most languages. To use it, enter the following command:
-nano [filename]
+nano [filename] <BR>
+Example: (_image_)<BR> ![Alt text](<Images/Nano command - edit atext file.png>)
+
 vi uses two operating modes to work – insert and command. insert is used to edit and create a text file. On the other hand,
 the command performs operations, such as saving, opening, copying, and pasting a file.
 To use vi on a file, enter:
-vi [filename]
+vi [filename] <BR>
+Example: (_image_)<BR> ![Alt text](<Images/vi command - edit file.png>)  <BR> ![Alt text](<Images/vi command - editor.png>)
 
 
-jed has a drop-down menu interface that allows users to perform actions without entering keyboard combinations or
+Jed has a drop-down menu interface that allows users to perform actions without entering keyboard combinations or
 commands. Like vi, it has modes to load modules or plugins to write specific texts.
 To open the program, simply enter jed to the command line.
-
-Example: (_image_)
-
 
 
 37. #### **alias, unalias**
@@ -617,14 +601,7 @@ display manager when the root user is unavailable.
 Here’s the general syntax of the command:
 su [options] [username [argument]]
 When executed without any option or argument, the su command runs through root privileges. It will prompt you to
-authenticate and use the sudo privileges temporarily.
-Here are some acceptable options to use:
-Copy Below Code
-Copy Below Code
-Copy Below Code
-Copy Below Code
-1/17/24, 2:50 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 25/25
+authenticate and use the sudo privileges temporarily. 
 -p or –preserve-environment keeps the same shell environment, consisting HOME, SHELL, USER, and LOGNAME. -s or –
 shell lets you specify a different shell environment to run. -l or –login runs a login script to switch to a different username.
 Executing it requires you to enter the user’s password.
@@ -644,8 +621,6 @@ htop [options]
 You can also add options, such as:
 -d or –delay shows the delay between updates in tenths of seconds. -C or –no-color enables the monochrome mode. -h or –
 help displays the help message and exit.
-
-
 
 
 40. #### **ps** 

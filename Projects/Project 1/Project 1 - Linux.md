@@ -153,6 +153,7 @@ executing this command must have the privilege to make a new folder in the paren
 permission denied error.
 
 Example: (_image_) 
+![mkdir - create a directory](https://github.com/Isaiahat/git-learning/assets/148476503/b263b414-bc2a-49c0-b813-ed4cbb5fd278)
 
 
 
@@ -166,6 +167,7 @@ For example, you want to remove an empty subdirectory named Songs and its main f
 rmdir -p Music/Songs
 
 Example: (_image_) 
+![rmdir - remove directory](https://github.com/Isaiahat/git-learning/assets/148476503/7916d219-70e8-4d17-b737-7be99cac2264)
 
 
 
@@ -184,6 +186,7 @@ Here are some acceptable options you can add:
 files and directories recursively.
 
 Example: (_image_) 
+![rm command](https://github.com/Isaiahat/git-learning/assets/148476503/f3752ee3-bc55-4c5d-9292-b9b9afe01588)
 
 
 
@@ -192,11 +195,12 @@ Example: (_image_)
 
 11. #### **touch**
 
-Command Syntax:
+Command Syntax: `touch (file.txt)`
 
 The touch command allows you to create an empty file or generate and modify a timestamp in the Linux command line.
 
 Example: (_image_) 
+![Touch - create an empty file](https://github.com/Isaiahat/git-learning/assets/148476503/095ce26b-7fa4-4ddd-bafe-b208f616afb2)
 
 
 
@@ -239,6 +243,9 @@ grep values sql_commands.sh
 The command’s output will display lines that contain blue.
 
 Example: (_image_)
+![grep command - search for values within a data set](https://github.com/Isaiahat/git-learning/assets/148476503/c31550d2-5f44-47f9-af32-d9dea2938937)
+
+
 
 15. #### **df**
 command syntax: `df [options] [file]`
@@ -247,16 +254,14 @@ Use the df command to report the system’s disk space usage, shown in percentag
 
 For example, enter the following command if you want to see the current directory’s system disk space usage in a humanreadable format:
 df -h
-Copy Below Code
-Copy Below Code
-Copy Below Code
-1/17/24, 2:50 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 11/25
 These are some acceptable options to use:
 df -m displays information on the file system usage in MBs. df -k displays file system usage in KBs. df -T shows the file
 system type in a new column.
 
 Example: (_image_)
+
+![df command - check disk space usage](https://github.com/Isaiahat/git-learning/assets/148476503/f80407d2-c571-41fe-842e-e50de813cb38)
+
 
 
 16. #### **du**
@@ -272,6 +277,8 @@ Adding a flag to the du command will modify the operation, such as:
 informs the last modification date of the displayed folders and files.
 
 Example: (_image_)
+![du command - show disk usage](https://github.com/Isaiahat/git-learning/assets/148476503/a41d447d-3578-47e3-8089-f8101962f228)
+
 
 
 17. #### **head**
@@ -287,6 +294,7 @@ of filename.txt. -c or –bytes prints the first customized number of bytes of e
 specifying the file name.
 
 Example: (_image_)
+![head - show initial 10 lines in a file](https://github.com/Isaiahat/git-learning/assets/148476503/c8aec733-cbb0-4187-84bc-df3c717a8cff)
 
 
 

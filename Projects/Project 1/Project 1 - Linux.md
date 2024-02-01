@@ -438,7 +438,7 @@ Example: (_image_)
 ![Alt text](<Images/uname command - unix or linux name.png>)
 
 
-28.#### **top**
+28. #### **top**
 command syntax: `top`
 
 The top command in Linux Terminal will display all the running processes and a dynamic real-time view of the current
@@ -539,7 +539,13 @@ When you use the useradd command, it performs some major changes:
 Edits the /etc/passwd, /etc/shadow, /etc/group, and /etc/gshadow files for the newly created accounts. Creates and
 populates a home directory for the user. Sets file permissions and ownerships to the home directory.
 
- Example: (_image_)
+ Example: (_image_) <BR>
+<BR> ![useradd 1 - create user](https://github.com/Isaiahat/git-learning/assets/148476503/147c4902-a18f-4061-9105-e505c850c5ee)
+
+<BR> ![useradd 2 - create user](https://github.com/Isaiahat/git-learning/assets/148476503/3bcec81a-1848-4b8e-83d4-c469fd1a2cb8)
+
+<BR> ![userdel - delete users](https://github.com/Isaiahat/git-learning/assets/148476503/ec8cc60c-6b56-468b-b609-17aea0296566)
+
 
 
 
@@ -555,6 +561,7 @@ update synchronizes the package files from their sources. upgrade installs the l
 check updates the package cache and checks broken dependencies.
 
 Example: (_image_)
+![apt-get - package installer to fetch software](https://github.com/Isaiahat/git-learning/assets/148476503/2cb8a7a8-5dfb-48d8-9926-298710839b22)
 
 
 
@@ -582,7 +589,7 @@ To open the program, simply enter jed to the command line.
 
 
 37. #### **alias, unalias**
-command syntax:
+command syntax: alias <option> <alias>="<command term>"
 > `alias <alias name>`
 > `unalias <alias name>`
 
@@ -595,11 +602,13 @@ alias k=’kill’
 On the other hand, the unalias command deletes an existing alias.
 
 Example: (_image_)
+![alias - set name substitute](https://github.com/Isaiahat/git-learning/assets/148476503/29057e28-2e46-438d-a471-500f8cb23875)
+![Unalias - remove alias](https://github.com/Isaiahat/git-learning/assets/148476503/6273ac62-dcf5-4b33-b18c-132eeb3d9d24)
 
 
 
 38. #### **su**
-command syntax: 
+command syntax: `su <option> <new user>`
 
 The switch user or su command allows you to run a program as a different user. It changes the administrative account in
 the current log-in session. This command is especially beneficial for accessing the system through SSH or using the GUI
@@ -612,6 +621,8 @@ authenticate and use the sudo privileges temporarily.
 shell lets you specify a different shell environment to run. -l or –login runs a login script to switch to a different username.
 Executing it requires you to enter the user’s password.
 
+Example: (_image_)
+![su - switch user](https://github.com/Isaiahat/git-learning/assets/148476503/1704010c-bd18-42f6-9903-337b98c84877)
 
 
 
@@ -628,10 +639,14 @@ You can also add options, such as:
 -d or –delay shows the delay between updates in tenths of seconds. -C or –no-color enables the monochrome mode. -h or –
 help displays the help message and exit.
 
+Example: (_image_)
+![Htop command](https://github.com/Isaiahat/git-learning/assets/148476503/a92b91b0-e2f7-4260-8d66-dd3eb16c83c8)
+
+
 
 40. #### **ps** 
 
-The process status or ps command produces a snapshot of all running processes in your system. The static results are
+The process status or `ps` command produces a snapshot of all running processes in your system. The static results are
 taken from the virtual files in the /proc file system.
 Executing the ps command without an option or argument will list the running processes in the shell along with:
 The unique process ID (PID) The type of the terminal (TTY) The running time (TIME) The command that launches the
@@ -639,3 +654,7 @@ process (CMD)
 Here are some acceptable options you can use:
 -T displays all processes associated with the current shell session. -u username lists processes associated with a specific
 user. -A or -e shows all the running processes.
+
+Example: (_image_)
+![ps - show process status](https://github.com/Isaiahat/git-learning/assets/148476503/d8fe6932-22ab-4f34-88de-9e5bfe1b3d80)
+

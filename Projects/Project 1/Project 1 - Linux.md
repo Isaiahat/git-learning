@@ -206,12 +206,16 @@ letters.
 
 Use the find command to search for files within a specific directory and perform subsequent operations. Here’s the general
 syntax:
-find [option] [path] [expression]
+`find [option] [path] [expression]`
 You can edit to suit your case
 For example, you want to look for a file called sql_commands.sh within the home directory and its subfolders:
 find /home -name sql_commands.sh
 Here are other variations when using find:
-find -name filename.txt to find files in the current directory. find ./ -type d -name directoryname to look for directories
+find -name filename.txt to find files in the current directory. find ./ -type d -name directoryname to look for directories.
+
+Example: (_image_)
+![find command](https://github.com/Isaiahat/git-learning/assets/148476503/ea9a2dad-f788-4f5a-9843-c13c35f22723)
+
 
 
 
@@ -375,6 +379,7 @@ Here are some options you can use:
 process IDs only.
 
 Example: (_image_)
+![Jobs - show running processes and status](https://github.com/Isaiahat/git-learning/assets/148476503/c5e1870a-79b1-4c83-8b01-fbc07c0c9ad7)
 
 
 
@@ -383,9 +388,9 @@ Use the kill command to terminate an unresponsive program manually. It will sign
 them to close their processes.
 To kill a program, you must know its process identification number (PID). If you don’t know the PID, run the following
 command:
-ps ux
+`ps ux`
 After knowing what signal to use and the program’s PID, enter the following syntax:
-kill [signal_option] pid
+`kill [signal_option] pid`
 There are 64 signals that you can use, but these two are among the most commonly used:
 SIGTERM requests a program to stop running and gives it some time to save all of its progress. The system will use this by
 default if you don’t specify the signal when entering the kill command. SIGKILL forces programs to stop, and you will lose
@@ -516,6 +521,7 @@ address:
 hostname -i
 
 Example: (_image_)
+![hostname - know system's host name](https://github.com/Isaiahat/git-learning/assets/148476503/63bc4ac5-d4cc-4680-a15e-e90a2b1bbd38)
 
 
 

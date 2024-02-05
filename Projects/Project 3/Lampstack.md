@@ -1,5 +1,15 @@
+# LAMP stack Implementation - Project Overview:
+> - **Introduction**
+> - **What is a Technology Stack?**
+> - **Preparing prerequisites for this project**
+> - **Step 1 - Installing Apache and updating firewall**
+> - **step 2 - Installing MySql**
+> - **Step 3 - Installing PHP**
+> - **Step 4 - Testing PHP processes on web server**
+> - **Conclusion**
 
-# Lamp Stack Implemetation
+
+## Introduction
 
 The Project (LAMP Stack) is a comprehensive program designed for individuals seeking to build and deploy web
 applications using the LAMP stack. This course project offers a guide through the process of creating dynamic websites by combining Linux, Apache, MySQL, and PHP. 
@@ -118,113 +128,64 @@ You will be asked to enter the password you set for the MySQL root account. Next
 
 At this point, your database system is now set up and we can move on.
 
-#### Step 3 — Installing PHP
+## Step 3 — Installing PHP
 PHP is the component of our setup that will process code to display dynamic content. It can run scripts, connect to our MySQL databases to get information, and hand the processed content over to our web server to display.
 
-We can once again leverage the apt system to install our components. We’re going to include some helper packages as well, so that PHP code can run under the Apache server and talk to our MySQL database:
-
-sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql
-This should install PHP without any problems. We’ll test this in a moment.
+We can once again leverage the apt system to install our components. We’re going to include some helper packages as well, so that PHP code can run under the Apache server and talk to our MySQL database: <br>
+`sudo apt-get install php libapache2-mod-php php-mysql`
+This should install PHP without any problems as shown below: <br> ![Alt text](<Images/Step 3a - installing php.png>) <br>
 
 In most cases, we’ll want to modify the way that Apache serves files when a directory is requested. Currently, if a user requests a directory from the server, Apache will first look for a file called index.html. We want to tell our web server to prefer PHP files, so we’ll make Apache look for an index.php file first.
 
-To do this, type this command to open the dir.conf file in a text editor with root privileges:
+To do this, type this command to open the dir.conf file in a text editor with root privileges:<br>
+`sudo nano /etc/apache2/mods-enabled/dir.conf`
+It will look like this: <br>
+> ![Alt text](<Images/step 3b - dir.conf.png>)
 
-sudo nano /etc/apache2/mods-enabled/dir.conf
-It will look like this:
+We want to move the "PHP index" file to the first position after the "DirectoryIndex" specification, like the below: <br>
+> ![Alt text](<Images/step 3b - dir.conf change.png>)
 
-/etc/apache2/mods-enabled/dir.conf
-<IfModule mod_dir.c>
-    DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
-</IfModule>
-We want to move the PHP index file highlighted above to the first position after the DirectoryIndex specification, like this:
 
-/etc/apache2/mods-enabled/dir.conf
-<IfModule mod_dir.c>
-    DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
-</IfModule>
-When you are finished, save and close the file by pressing Ctrl-X. You’ll have to confirm the save by typing Y and then hit Enter to confirm the file save location.
+After this, we must save and close the file and then restart the Apache web server in order for our changes to be recognized. You can do this by typing this: <br>
+`sudo systemctl restart apache2` <br>
+We can also check on the status of the apache2 service using systemctl:<br>
+`sudo systemctl status apache2` <br>
+Sample Output: <br>
+![Alt text](<Images/step 3b - check php status.png>)
 
-After this, we need to restart the Apache web server in order for our changes to be recognized. You can do this by typing this:
-
-sudo systemctl restart apache2
-We can also check on the status of the apache2 service using systemctl:
-
-sudo systemctl status apache2
-Sample Output
-● apache2.service - LSB: Apache2 web server
-   Loaded: loaded (/etc/init.d/apache2; bad; vendor preset: enabled)
-  Drop-In: /lib/systemd/system/apache2.service.d
-           └─apache2-systemd.conf
-   Active: active (running) since Wed 2016-04-13 14:28:43 EDT; 45s ago
-     Docs: man:systemd-sysv-generator(8)
-  Process: 13581 ExecStop=/etc/init.d/apache2 stop (code=exited, status=0/SUCCESS)
-  Process: 13605 ExecStart=/etc/init.d/apache2 start (code=exited, status=0/SUCCESS)
-    Tasks: 6 (limit: 512)
-   CGroup: /system.slice/apache2.service
-           ├─13623 /usr/sbin/apache2 -k start
-           ├─13626 /usr/sbin/apache2 -k start
-           ├─13627 /usr/sbin/apache2 -k start
-           ├─13628 /usr/sbin/apache2 -k start
-           ├─13629 /usr/sbin/apache2 -k start
-           └─13630 /usr/sbin/apache2 -k start
-
-Apr 13 14:28:42 ubuntu-16-lamp systemd[1]: Stopped LSB: Apache2 web server.
-Apr 13 14:28:42 ubuntu-16-lamp systemd[1]: Starting LSB: Apache2 web server...
-Apr 13 14:28:42 ubuntu-16-lamp apache2[13605]:  * Starting Apache httpd web server apache2
-Apr 13 14:28:42 ubuntu-16-lamp apache2[13605]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerNam
-Apr 13 14:28:43 ubuntu-16-lamp apache2[13605]:  *
-Apr 13 14:28:43 ubuntu-16-lamp systemd[1]: Started LSB: Apache2 web server.
-Install PHP Modules
-To enhance the functionality of PHP, we can optionally install some additional modules.
-
-To see the available options for PHP modules and libraries, you can pipe the results of apt-cache search into less, a pager which lets you scroll through the output of other commands:
-
-apt-cache search php- | less
-Use the arrow keys to scroll up and down, and q to quit.
-
-The results are all optional components that you can install. It will give you a short description for each:
-
-libnet-libidn-perl - Perl bindings for GNU Libidn
-php-all-dev - package depending on all supported PHP development packages
-php-cgi - server-side, HTML-embedded scripting language (CGI binary) (default)
-php-cli - command-line interpreter for the PHP scripting language (default)
-php-common - Common files for PHP packages
-php-curl - CURL module for PHP [default]
-php-dev - Files for PHP module development (default)
-php-gd - GD module for PHP [default]
-php-gmp - GMP module for PHP [default]
-…
-:
-To get more information about what each module does, you can either search the internet, or you can look at the long description of the package by typing:
-
-apt-cache show package_name
-There will be a lot of output, with one field called Description-en which will have a longer explanation of the functionality that the module provides.
-
-For example, to find out what the php-cli module does, we could type this:
-
-apt-cache show php-cli
-Along with a large amount of other information, you’ll find something that looks like this:
-
-Output
-…
-Description-en: command-line interpreter for the PHP scripting language (default)
- This package provides the /usr/bin/php command interpreter, useful for
- testing PHP scripts from a shell or performing general shell scripting tasks.
- .
- PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
- open source general-purpose scripting language that is especially suited
- for web development and can be embedded into HTML.
- .
- This package is a dependency package, which depends on Debian's default
- PHP version (currently 7.0).
-…
-If, after researching, you decide you would like to install a package, you can do so by using the apt-get install command like we have been doing for our other software.
-
-If we decided that php-cli is something that we need, we could type:
-
-sudo apt-get install php-cli
-If you want to install more than one module, you can do that by listing each one, separated by a space, following the apt-get install command, like this:
-
-sudo apt-get install package1 package2 ...
 At this point, your LAMP stack is installed and configured. We should still test out our PHP though.
+
+## Step 4 — Testing PHP Processing on your Web Server
+In order to test that our system is configured properly for PHP, we can create a very basic PHP script.
+
+We will call this script "info.php". In order for Apache to find the file and serve it correctly, it must be saved to a very specific directory, which is called the web root.
+
+In Ubuntu 16.04, this directory is located at /var/www/html/. We can create the file at that location by typing: <br>
+`sudo nano /var/www/html/info.php`<br>
+This will open a blank file. We want to put the following text, which is valid PHP code, inside the file:<br>
+![Alt text](<Images/Step 3c - testing_2.png>)
+
+When you are finished, save and close the file.
+
+Now we can test whether our web server can correctly display content generated by a PHP script. To try this out, we just have to visit this page in our web browser. You’ll need your server’s public IP address again.
+
+The address you want to visit will be:
+>http://`your_server_IP_address`/info.php <br>
+
+The page that you come to should look something like this: <br>
+![Alt text](<Images/Step 3c - testing_3.png>)
+
+
+This page basically gives you information about your server from the perspective of PHP. It is useful for debugging and to ensure that your settings are being applied correctly.
+
+This indicates that PHP is working as expected.
+
+Best practice is to remove this file after this test because it could actually give information about your server to unauthorized users. To do this, you can type:<br>
+`sudo rm /var/www/html/info.php` <br>
+You can always recreate this page if you need to access the information again later.
+
+## Conclusion
+Now that you have a LAMP stack installed, you have many choices for what to do next. Basically, you’ve installed a platform that will allow you to install most kinds of websites and web software on your server.
+
+Best practice dictates that as an immediate next step, you should ensure that connections to your web server are secured, by serving them via HTTPS.
+

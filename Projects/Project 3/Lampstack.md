@@ -43,307 +43,188 @@ AWS is the biggest Cloud Service Provider and it offers a free tier account that
 
 Thankfully, we have a pre-configured ubuntu linux machine setup already.
 
-## Installing Apache and Updating the Firewall
-**Step 1** — Installing Apache and Updating the Firewall
-What exactly is Apache?
-Apache HTTP Server is the most widely used web server software. Developed and maintained by Apache Software
-Foundation, Apache is an open source software available for free. It runs on 67% of all webservers in the world. It is fast, reliable, and secure. It can be highly customized to meet the needs of many different environments by using extensions and modules. 
+## Step 1 - Installing Apache and Updating the Firewall
+The Apache web server is among the most popular web servers in the world. It’s well-documented, and has been in wide use for much of the history of the web, which makes it a great default choice for hosting a website.
 
-Most WordPress hosting providers use Apache as their web server software. However, websites and other
-applications can run on other web server software as well. Such as Nginx, Microsoft's IIS, etc.
-The Apache web server is among the most popular web servers in the world. It’s well documented, has an active
-community of users, and has been in wide use for much of the history of the web, which makes it a great default choice for
-hosting a website.
+We can install Apache easily using Ubuntu’s package manager, apt. A package manager allows us to install most software pain-free from a repository maintained by Ubuntu.
+We can get started by typing these commands:<br>
+`sudo apt-get update`<BR>
+`sudo apt-get install apache2`<br>
+Since we are using a sudo command, these operations get executed with root privileges. It will ask you for your regular user’s password to verify your intentions.
 
-Install Apache using Ubuntu’s package manager `apt`:
+Once you’ve entered your password, apt will tell you which packages it plans to install and how much extra disk space they’ll take up. Press y and hit ENTER to continue, and the installation will proceed.
+> ![Alt text](<Images/step 1a - sudo aptget upgrade.png>) <br>
+> ![Alt text](<Images/step 1b - sudo aptget install apache2.png>)
 
-Update a list of packages in package manager:
- `sudo apt update`
+#### Setting Global ServerName to Suppress Syntax Warnings <br>
+Next, we will add a single line to the /etc/apache2/apache2.conf file to suppress a warning message. While harmless, if you do not set ServerName globally, you will receive the following warning when checking your Apache configuration for syntax errors:<br>
+`sudo apache2ctl configtest`
+>**Output**<br>
+>AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+Syntax OK
 
-Run apache2 package installation
-`sudo apt install apache2`
+Open up the main configuration file with your text edit:
+<br>`sudo nano /etc/apache2/apache2.conf`<br>
+Inside, at the bottom of the file, add a ServerName directive, pointing to your primary domain name or public address.
 
-To verify that apache2 is running as a Service in our OS, use following command:
-`sudo systemctl status apache2.` If it is green and running, then everything has been done correctly.-
+Save and close the file when you are finished.
+Next, check for syntax errors by typing:<br>`sudo apache2ctl configtest`<br>
+Since we added the global ServerName directive, all we should see is:<br> ![Alt text](<Images/step 1D - firewall.png>)
 
-Before we can receive any traffic by our Web Server, we need to open TCP port 80 which is the default port that web
-browsers use to access web pages on the Internet
-As we know, we have TCP port 22 open by default on our EC2 machine to access it via SSH, so we need to add a rule to EC2
-configuration to open inbound connection through port 80:
-Copy Below Code
-Copy Below Code
-2/3/24, 6:01 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 8/19
+Restart Apache to implement your changes:<br>
+`sudo systemctl restart apache2`
+You can now begin adjusting the firewall.
+
+#### Adjusting the Firewall to Allow Web Traffic
+Next we run the following and check that it allows port 80 and 443 <br>
+`sudo ufw app info "Apache Full"` <br>
+>**Output**
+Profile: Apache Full<br>
+Title: Web Server (HTTP,HTTPS)<br>
+Description: Apache v2 is the next generation of the omnipresent Apache web
+server.<br>
+Ports:
+  80,443/tcp<br>
+Allow incoming traffic for this profile:
+
+Then run:<br>
+`sudo ufw allow in "Apache Full"`<br>
+You can do a spot check right away to verify that everything went as planned by visiting your server’s public IP address in your web browser 
+
+http://your_server_IP_address
+You will see the default Ubuntu 16.04 Apache web page, which is there for informational and testing purposes. It should look something like the below: <br>
+![Alt text](<Images/step 1e.png>)
+
+This page indicates that the web server is now correctly installed and accessible through our firewall.
 
 
-Our server is running and we can access it locally and from the Internet (Source 0.0.0.0/0 means 'from any IP address').
-First, let us try to check how we can access it locally in our Ubuntu shell, run:
-`curl  http://localhost:80`
-or
-`curl http://127.0.0.1:80`
 
-These 2 commands above actually do pretty much the same - they use 'curl' command to request our Apache HTTP Server
-on port 80 (actually you can even try to not specify any port - it will work anyway). The difference is that: in the first case
-we try to access our server via DNS name and in the second one - by IP address (in this case IP address 127.0.0.1
-corresponds to DNS name 'localhost' and the process of converting a DNS name to IP address is called "resolution"). We
-will touch DNS in further lectures and projects.
-As an output you can see some strangely formatted test, do not worry, we just made sure that our Apache web service
-responds to 'curl' command with some payload.
-Now it is time for us to test how our Apache HTTP server can respond to requests from the Internet. Open a web browser
-of your choice and try to access following url
-http://<Public-IP-Address>:80
-Another way to retrieve your Public IP address, other than to check it in AWS Web console, is to use following command:
-Copy Below Code
-Copy Below Code
-Copy Below Code
-2/3/24, 6:01 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 9/19
-curl -s http://169.254.169.254/latest/meta-data/public-ipv4
-The URL in browser shall also work if you do not specify port number since all web browsers use port 80 by default.
-If you see following page, then your web server is now correctly installed and accessible through your firewall.
-In fact, it is the same content that you previously got by 'curl' command, but represented in nice HTML formatting by your
-web browser.
-Installing Mysql
-Step 2 — Installing MySQL
+## Step 2 — Installing MySQL
 Now that you have a web server up and running, you need to install a Database Management System (DBMS) to be able to
 store and manage data for your site in a relational database. MySQL is a popular relational database management system
-2/3/24, 6:01 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 10/19
-used within PHP environments, so we will use it in our project.
-Again, use 'apt' to acquire and install this software:
-$ sudo apt install mysql-server
-When prompted, confirm installation by typing Y , and then ENTER .
-When the installation is finished, log in to the MySQL console by typing:
-$ sudo mysql
-This will connect to the MySQL server as the administrative database user root, which is inferred by the use of sudo when
-running this command. You should see output like this:
-Welcome to the MySQL monitor. Commands end with ; or \g.
-Your MySQL connection id is 11
-Server version: 8.0.22-0ubuntu0.20.04.3 (Ubuntu)
-Copyright (c) 2000, 2020, Oracle and/or its affiliates. All rights reserved.
-Oracle is a registered trademark of Oracle Corporation and/or its
-affiliates. Other names may be trademarks of their respective
-owners.
-Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
-mysql>
-It’s recommended that you run a security script that comes pre-installed with MySQL. This script will remove some
-insecure default settings and lock down access to your database system. Before running the script you will set a password
-for the root user, using mysql_native_password as default authentication method. We’re defining this user’s password as
-PassWord.1 .
-Exit the MySQL shell with:
-Copy Below Code
-Copy Below Code
-Copy Below Code
-Copy Below Code
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'PassWord.1';
-2/3/24, 6:01 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 11/19
-Start the interactive script by running:
-$ sudo mysql_secure_installation
-This will ask if you want to configure the VALIDATE PASSWORD PLUGIN .
-Note: Enabling this feature is something of a judgment call. If enabled, passwords which don’t match the specified criteria
-will be rejected by MySQL with an error. It is safe to leave validation disabled, but you should always use strong, unique
-passwords for database credentials.
-Answer Y for yes, or anything else to continue without enabling.
-VALIDATE PASSWORD PLUGIN can be used to test passwords
-and improve security. It checks the strength of password
-and allows the users to set only those passwords which are
-secure enough. Would you like to setup VALIDATE PASSWORD plugin?
-Press y|Y for Yes, any other key for No:
-If you answer “yes”, you’ll be asked to select a level of password validation. Keep in mind that if you enter 2 for the
-strongest level, you will receive errors when attempting to set any password which does not contain numbers, upper and
-lowercase letters, and special characters, or which is based on common dictionary words e.g PassWord.1 .
-Regardless of whether you chose to set up the VALIDATE PASSWORD PLUGIN , your server will next ask you to select and
-confirm a password for the MySQL root user. This is not to be confused with the system root. The database root user is an
-Copy Below Code
-mysql> exit
-Copy Below Code
-Copy Below Code
-Copy Below Code
-There are three levels of password validation policy:
-LOW Length >= 8
-MEDIUM Length >= 8, numeric, mixed case, and special characters
-STRONG Length >= 8, numeric, mixed case, special characters and dictionary file
-Please enter 0 = LOW, 1 = MEDIUM and 2 = STRONG: 1
-2/3/24, 6:01 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 12/19
-administrative user with full privileges over the database system. Even though the default authentication method for the
-MySQL root user dispenses the use of a password, even when one is set, you should define a strong password here as an
-additional safety measure. We’ll talk about this in a moment.
-If you enabled password validation, you’ll be shown the password strength for the root password you just entered and
-your server will ask if you want to continue with that password. If you are happy with your current password, enter Y for
-“yes” at the prompt:
-Estimated strength of the password: 100
-Do you wish to continue with the password provided?(Press y|Y for Yes, any other key for No) : y
-For the rest of the questions, press Y and hit the ENTER key at each prompt. This will prompt you to change the root
-password, remove some anonymous users and the test database, disable remote root logins, and load these new rules so
-that MySQL immediately respects the changes you have made.
-When you’re finished, test if you’re able to log in to the MySQL console by typing:
-$ sudo mysql -p
-Notice the -p flag in this command, which will prompt you for the password used after changing the root user password.
-To exit the MySQL console, type:
-mysql> exit
-Notice that you need to provide a password to connect as the root user.
-For increased security, it’s best to have dedicated user accounts with less expansive privileges set up for every database,
-especially if you plan on having multiple databases hosted on your server.
-Note: At the time of this writing, the native MySQL PHP library mysqlnd doesn’t support
-caching_sha2_authentication , the default authentication method for MySQL 8. For that reason, when creating
-database users for PHP applications on MySQL 8, you’ll need to make sure they’re configured to use
-mysql_native_password instead.
-Your MySQL server is now installed and secured. Next, we will install PHP, the final component in the LAMP stack.
-Installing PHP
-Copy Below Code
-Copy Below Code
-Copy Below Code
-2/3/24, 6:01 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 13/19
-Step 3 — Installing PHP
-You have Apache installed to serve your content and MySQL installed to store and manage your data. PHP is the
-component of our setup that will process code to display dynamic content to the end user. In addition to the php
-package, you’ll need php-mysql , a PHP module that allows PHP to communicate with MySQL-based databases. You’ll
-also need libapache2-mod-php to enable Apache to handle PHP files. Core PHP packages will automatically be installed
-as dependencies.
-To install these 3 packages at once, run:
-$ sudo apt install php libapache2-mod-php php-mysql
-Once the installation is finished, you can run the following command to confirm your PHP version:
-php -v
-PHP 7.4.3 (cli) (built: Oct 6 2020 15:47:56) ( NTS )
-Copyright (c) The PHP Group
-Zend Engine v3.4.0, Copyright (c) Zend Technologies
-At this point, your LAMP stack is completely installed and fully operational.
-Linux (Ubuntu)
-Apache HTTP Server
-MySQL
-PHP
-To test your setup with a PHP script, it’s best to set up a proper Apache Virtual Host to hold your website’s files and
-folders. Virtual host allows you to have multiple websites located on a single machine and users of the websites will not
-even notice it.
-Copy Below Code
-Copy Below Code
-Copy Below Code
-2/3/24, 6:01 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 14/19
-We will configure our first Virtual Host in the next step.
-Enable PHP on the website
-Step 5 — Enable PHP on the website
-With the default DirectoryIndex settings on Apache, a file named index.html will always take precedence over an
-index.php file. This is useful for setting up maintenance pages in PHP applications, by creating a temporary
-index.html file containing an informative message to visitors. Because this page will take precedence over the
-index.php page, it will then become the landing page for the application. Once maintenance is over, the index.html is
-renamed or removed from the document root, bringing back the regular application page.
-In case you want to change this behavior, you’ll need to edit the /etc/apache2/mods-enabled/dir.conf file and change the
-order in which the index.php file is listed within the DirectoryIndex directive:
-sudo vim /etc/apache2/mods-enabled/dir.conf
+used within PHP environments, so we will use it in this project. 
+Again, we use 'apt' to acquire and install this software:
+`sudo apt install mysql-server` 
+When prompted, confirm installation by typing Y , and then ENTER.
+When the installation is finished, log in to the MySQL console by typing:<br>
+`sudo mysql` <br>
+> ![](<Images/Step 2a - install my sql.png>) <br>
+
+During the installation, your server will ask you to select and confirm a password for the MySQL “root” user. This is an administrative account in MySQL that has increased privileges. Think of it as being similar to the root account for the server itself (the one you are configuring now is a MySQL-specific account, however). 
+
+when the installation is complete, we want to run a simple security script that will remove some dangerous defaults and lock down access to our database system a little bit. Start the interactive script by running: <br>
+`mysql_secure_installation` <br>
+You will be asked to enter the password you set for the MySQL root account. Next, you will be asked if you want to configure the VALIDATE PASSWORD PLUGIN. - input y or yes and follow the rest of the prompts. <br>
+
+At this point, your database system is now set up and we can move on.
+
+#### Step 3 — Installing PHP
+PHP is the component of our setup that will process code to display dynamic content. It can run scripts, connect to our MySQL databases to get information, and hand the processed content over to our web server to display.
+
+We can once again leverage the apt system to install our components. We’re going to include some helper packages as well, so that PHP code can run under the Apache server and talk to our MySQL database:
+
+sudo apt-get install php libapache2-mod-php php-mcrypt php-mysql
+This should install PHP without any problems. We’ll test this in a moment.
+
+In most cases, we’ll want to modify the way that Apache serves files when a directory is requested. Currently, if a user requests a directory from the server, Apache will first look for a file called index.html. We want to tell our web server to prefer PHP files, so we’ll make Apache look for an index.php file first.
+
+To do this, type this command to open the dir.conf file in a text editor with root privileges:
+
+sudo nano /etc/apache2/mods-enabled/dir.conf
+It will look like this:
+
+/etc/apache2/mods-enabled/dir.conf
 <IfModule mod_dir.c>
-#Change this:
-#DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
-#To this:
-Copy Below Code
-Copy Below Code
-2/3/24, 6:01 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 15/19
-DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+    DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
 </IfModule>
-After saving and closing the file, you will need to reload Apache so the changes take effect:
-$ sudo systemctl reload apache2
-Finally, we will create a PHP script to test that PHP is correctly installed and configured on your server.
-Now that you have a custom location to host your website’s files and folders, we’ll create a PHP test script to confirm that
-Apache is able to handle and process requests for PHP files.
-Create a new file named index.php inside your custom web root folder:
-$ vim /var/www/projectlamp/index.php
-This will open a blank file. Add the following text, which is valid PHP code, inside the file:
-<?php
-phpinfo();
-When you are finished, save and close the file, refresh the page and you will see a page similar to this:
-This page provides information about your server from the perspective of PHP. It is useful for debugging and to ensure
-that your settings are being applied correctly.
-If you can see this page in your browser, then your PHP installation is working as expected.
-After checking the relevant information about your PHP server through that page, it’s best to remove the file you created
-as it contains sensitive information about your PHP environment -and your Ubuntu server. You can use rm to do so:
-$ sudo rm /var/www/projectlamp/index.php
-You can always recreate this page if you need to access the information again later.
-Credit: This guide was inspired by Digital Ocean
-Congratulations, You have finished your very first REAL LIFE PROJECT by deploying a LAMP stack website in AWS Cloud!
-Copy Below Code
-Copy Below Code
-Copy Below Code
-Copy Below Code
-2/3/24, 6:01 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 16/19
-Creating a Virtual Hostfor your Website using Apache
-2/3/24, 6:01 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 17/19
-Step 4 — Creating a Virtual Host for your Website using Apache
-In this project, you will set up a domain called projectlamp , but you can replace this with any domain of your choice.
-Apache on Ubuntu 20.04 has one server block enabled by default that is configured to serve documents from the
-/var/www/html directory. We will leave this configuration as is and will add our own directory next next to the default
-one.
-Create the directory for projectlamp using 'mkdir' command as follows:
-$ sudo mkdir /var/www/projectlamp
-Next, assign ownership of the directory with the $USER environment variable, which will reference your current system
-user:
-$ sudo chown -R $USER:$USER /var/www/projectlamp
-Then, create and open a new configuration file in Apache’s sites-available directory using your preferred commandline editor. Here, we’ll be using vi or vim (They are the same by the way):
-$ sudo vi /etc/apache2/sites-available/projectlamp.conf
-This will create a new blank file. Paste in the following bare-bones configuration by hitting on i on the keyboard to enter
-the insert mode, and paste the text:
-<VirtualHost *:80>
-ServerName projectlamp
-ServerAlias www.projectlamp
-ServerAdmin webmaster@localhost
-DocumentRoot /var/www/projectlamp
-ErrorLog ${APACHE_LOG_DIR}/error.log
-CustomLog ${APACHE_LOG_DIR}/access.log combined
-</VirtualHost>
-To save and close the file, simply follow the steps below:
-1. Hit the esc button on the keyboard
-2. Type :
-3. Type wq . w for write and q for quit
-4. Hit ENTER to save the file
-Copy Below Code
-Copy Below Code
-Copy Below Code
-Copy Below Code
-2/3/24, 6:01 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 18/19
-You can use the ls command to show the new file in the sites-available directory
-$ sudo ls /etc/apache2/sites-available
-You will see something like this
-000-default.conf default-ssl.conf projectlamp.conf
-With this VirtualHost configuration, we’re telling Apache to serve projectlamp using /var/www/projectlampl as its web
-root directory. If you would like to test Apache without a domain name, you can remove or comment out the options
-ServerName and ServerAlias by adding a # character in the beginning of each option’s lines. Adding the # character there
-will tell the program to skip processing the instructions on those lines.
-You can now use a2ensite command to enable the new virtual host:
-$ sudo a2ensite projectlamp
-You might want to disable the default website that comes installed with Apache. This is required if you’re not using a
-custom domain name, because in this case Apache’s default configuration would overwrite your virtual host. To disable
-Apache’s default website use a2dissite command , type:
-$ sudo a2dissite 000-default
-To make sure your configuration file doesn’t contain syntax errors, run:
-$ sudo apache2ctl configtest
-Finally, reload Apache so these changes take effect:
-$ sudo systemctl reload apache2
-Your new website is now active, but the web root /var/www/projectlamp is still empty. Create an index.html file in that
-location so that we can test that the virtual host works as expected:
-sudo echo 'Hello LAMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname)
-Now go to your browser and try to open your website URL using IP address:
-Copy Below Code
-Copy Below Code
-Copy Below Code
-Copy Below Code
-Copy Below Code
-Copy Below Code
-2/3/24, 6:01 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 19/19
-http://<Public-IP-Address>:80
-If you see the text from 'echo' command you wrote to index.html file, then it means your Apache virtual host is working as
-expected. In the output you will see your server's public hostname (DNS name) and public IP address. You can also access
-your website in your browser by public DNS name, not only by IP - try it out, the result must be the same (port is optional)
-http://<Public-DNS-Name>:80
-You can leave this file in place as a temporary landing page for your application until you set up an index.php file to
-replace it. Once you do that, remember to remove or rename the index.html file from your document root, as it would
-take precedence over an index.php file by default.
-Copy Below Code
-Copy Below Code
-Previous Step Next Step
+We want to move the PHP index file highlighted above to the first position after the DirectoryIndex specification, like this:
+
+/etc/apache2/mods-enabled/dir.conf
+<IfModule mod_dir.c>
+    DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+When you are finished, save and close the file by pressing Ctrl-X. You’ll have to confirm the save by typing Y and then hit Enter to confirm the file save location.
+
+After this, we need to restart the Apache web server in order for our changes to be recognized. You can do this by typing this:
+
+sudo systemctl restart apache2
+We can also check on the status of the apache2 service using systemctl:
+
+sudo systemctl status apache2
+Sample Output
+● apache2.service - LSB: Apache2 web server
+   Loaded: loaded (/etc/init.d/apache2; bad; vendor preset: enabled)
+  Drop-In: /lib/systemd/system/apache2.service.d
+           └─apache2-systemd.conf
+   Active: active (running) since Wed 2016-04-13 14:28:43 EDT; 45s ago
+     Docs: man:systemd-sysv-generator(8)
+  Process: 13581 ExecStop=/etc/init.d/apache2 stop (code=exited, status=0/SUCCESS)
+  Process: 13605 ExecStart=/etc/init.d/apache2 start (code=exited, status=0/SUCCESS)
+    Tasks: 6 (limit: 512)
+   CGroup: /system.slice/apache2.service
+           ├─13623 /usr/sbin/apache2 -k start
+           ├─13626 /usr/sbin/apache2 -k start
+           ├─13627 /usr/sbin/apache2 -k start
+           ├─13628 /usr/sbin/apache2 -k start
+           ├─13629 /usr/sbin/apache2 -k start
+           └─13630 /usr/sbin/apache2 -k start
+
+Apr 13 14:28:42 ubuntu-16-lamp systemd[1]: Stopped LSB: Apache2 web server.
+Apr 13 14:28:42 ubuntu-16-lamp systemd[1]: Starting LSB: Apache2 web server...
+Apr 13 14:28:42 ubuntu-16-lamp apache2[13605]:  * Starting Apache httpd web server apache2
+Apr 13 14:28:42 ubuntu-16-lamp apache2[13605]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerNam
+Apr 13 14:28:43 ubuntu-16-lamp apache2[13605]:  *
+Apr 13 14:28:43 ubuntu-16-lamp systemd[1]: Started LSB: Apache2 web server.
+Install PHP Modules
+To enhance the functionality of PHP, we can optionally install some additional modules.
+
+To see the available options for PHP modules and libraries, you can pipe the results of apt-cache search into less, a pager which lets you scroll through the output of other commands:
+
+apt-cache search php- | less
+Use the arrow keys to scroll up and down, and q to quit.
+
+The results are all optional components that you can install. It will give you a short description for each:
+
+libnet-libidn-perl - Perl bindings for GNU Libidn
+php-all-dev - package depending on all supported PHP development packages
+php-cgi - server-side, HTML-embedded scripting language (CGI binary) (default)
+php-cli - command-line interpreter for the PHP scripting language (default)
+php-common - Common files for PHP packages
+php-curl - CURL module for PHP [default]
+php-dev - Files for PHP module development (default)
+php-gd - GD module for PHP [default]
+php-gmp - GMP module for PHP [default]
+…
+:
+To get more information about what each module does, you can either search the internet, or you can look at the long description of the package by typing:
+
+apt-cache show package_name
+There will be a lot of output, with one field called Description-en which will have a longer explanation of the functionality that the module provides.
+
+For example, to find out what the php-cli module does, we could type this:
+
+apt-cache show php-cli
+Along with a large amount of other information, you’ll find something that looks like this:
+
+Output
+…
+Description-en: command-line interpreter for the PHP scripting language (default)
+ This package provides the /usr/bin/php command interpreter, useful for
+ testing PHP scripts from a shell or performing general shell scripting tasks.
+ .
+ PHP (recursive acronym for PHP: Hypertext Preprocessor) is a widely-used
+ open source general-purpose scripting language that is especially suited
+ for web development and can be embedded into HTML.
+ .
+ This package is a dependency package, which depends on Debian's default
+ PHP version (currently 7.0).
+…
+If, after researching, you decide you would like to install a package, you can do so by using the apt-get install command like we have been doing for our other software.
+
+If we decided that php-cli is something that we need, we could type:
+
+sudo apt-get install php-cli
+If you want to install more than one module, you can do that by listing each one, separated by a space, following the apt-get install command, like this:
+
+sudo apt-get install package1 package2 ...
+At this point, your LAMP stack is installed and configured. We should still test out our PHP though.

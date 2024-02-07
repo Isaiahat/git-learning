@@ -4,7 +4,9 @@
 > - **Step 1 - Installing the Nginx Web Server**
 > - **step 2 - Installing MySql**
 > - **Step 3 - Installing PHP**
-> - **Step 4 - Testing PHP processes on web server**
+> - **Step 4 - Configuring Nginx to Use the PHP Processor**
+> - **step 5 - Testing PHP with Nginx**
+> - **step 6 - Testing Database Connection from PHP**
 > - **Conclusion**
 
 
@@ -224,7 +226,7 @@ You can leave this file in place as a temporary landing page for your applicatio
 
 Your LEMP stack is now fully configured. In the next step, we’ll create a PHP script to test that Nginx is in fact able to handle .php files within your newly configured website.
 
-## Step 5 –Testing PHP with Nginx
+## Step 5 – Testing PHP with Nginx
 
 Your LEMP stack should now be completely set up. You can test it to validate that Nginx can correctly hand .php files off to your PHP processor.
 
@@ -278,16 +280,8 @@ Now exit the MySQL shell with: `exit`
 Notice the -p flag in this command, which will prompt you for the password used when creating the example_user user. After logging in to the MySQL console, confirm that you have access to the example_database database: <br>
 `SHOW DATABASES;` <br>
 
-This will give you the following output:
-
-> <Output:> <br>
-+--------------------+ <br>
-| Database           |<br>
-+--------------------+<br>
-| example_database   |<br>
-| information_schema |<br>
-+--------------------+<br>
-2 rows in set (0.000 sec)<br>
+This will give you the following output:<br>
+![Alt text](<Images/step 6b.png>)
 
 Next, we’ll create a test table named **todo_list.** From the MySQL console, run the following statement: <br>
 > `CREATE TABLE example_database.todo_list` (<br>
@@ -303,53 +297,51 @@ To confirm that the data was successfully saved to your table, run: <br>
 
 You’ll see the following output:
 
-Output
-+---------+--------------------------+
-| item_id | content                  |
-+---------+--------------------------+
-|       1 | My first important item  |
-|       2 | My second important item |
-|       3 | My third important item  |
-|       4 | and this one other stuff |
-+---------+--------------------------+
-4 rows in set (0.000 sec)
+> <Output:> <br>
++---------+--------------------------+ <br>
+| item_id | content                  |<br>
++---------+--------------------------+<br>
+|       1 | My first important item  |<br>
+|       2 | My second important item |<br>
+|       3 | My third important item  |<br>
+|       4 | and this one other stuff |<br>
++---------+--------------------------+<br>
+4 rows in set (0.000 sec)<br>
 
-After confirming that you have valid data in your test table, you can exit the MySQL console:
+After confirming that you have valid data in your test table, you can exit the MySQL console: `exit`
 
-exit
-Now you can create the PHP script that will connect to MySQL and query for your content. Create a new PHP file in your custom web root directory using your preferred editor. We’ll use nano for that:
 
-nano /var/www/your_domain/todo_list.php
-The following PHP script connects to the MySQL database and queries for the content of the todo_list table, exhibiting the results in a list. If there’s a problem with the database connection, it will throw an exception. Copy this content into your todo_list.php script:
+Now you can create the PHP script that will connect to MySQL and query for your content. Create a new PHP file in your custom web root directory using your preferred editor. We’ll use nano for that: <br>
+`nano /var/www/your_domain/todo_list.php` <br>
+The following PHP script connects to the MySQL database and queries for the content of the todo_list table, exhibiting the results in a list. If there’s a problem with the database connection, it will throw an exception. Copy this content into your `todo_list.php` script: <br>
 
-/var/www/your_domain/todo_list.php
-<?php
-$user = "example_user";
-$password = "password";
-$database = "example_database";
-$table = "todo_list";
-
-try {
-  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);
-  echo "<h2>TODO</h2><ol>"; 
-  foreach($db->query("SELECT content FROM $table") as $row) {
-    echo "<li>" . $row['content'] . "</li>";
-  }
-  echo "</ol>";
-} catch (PDOException $e) {
-    print "Error!: " . $e->getMessage() . "<br/>";
-    die();
+> < ?php
+$user = "example_user"; <br>
+$password = "Jaraed1@"; <br>
+$database = "example_database"; <br>
+$table = "todo_list"; <br>
+> 
+> try { <br>
+  $db = new PDO("mysql:host=localhost;dbname=$database", $user, $password);<br>
+  echo "<h2>TODO</h2><ol>"; <br>
+  foreach($db->query("SELECT content FROM $table") as $row) { <br>
+    echo "<li>" . $row['content'] . "</li>"; <br>
+  }<br>
+  echo "</ol>"; <br>
+} catch (PDOException $e) { <br>
+    print "Error!: " . $e->getMessage() . "<br/>"; <br>
+    die(); <br>
 }
+
 Save and close the file when you’re done editing.
 
-You can now access this page in your web browser by visiting the domain name or public IP address configured for your website, followed by /todo_list.php:
+You can now access this page in your web browser by visiting the domain name or public IP address configured for your website, followed by /todo_list.php: <br>
+`http://server_domain_or_IP/todo_list.php` <br>
 
-http://server_domain_or_IP/todo_list.php
-You should see a page like this, showing the content you’ve inserted in your test table:
-
-Example PHP todo list
+You should see a page like this, showing the content you’ve inserted in your test table:<br>
+![Alt text](<Images/step 6c - mysql query.png>)
 
 That means your PHP environment is ready to connect and interact with your MySQL server.
 
-Conclusion
+## Conclusion
 In this guide, we’ve built a flexible foundation for serving PHP websites and applications to your visitors, using Nginx as web server and MySQL as database system.

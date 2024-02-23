@@ -1,0 +1,118 @@
+#! /bin/bash
+
+# create innitial directories
+mkdir first\ folder/ 2nd\ folder/3rd\ folder/
+tree first\ folder
+ls -R first\ folder
+
+#  Installing webserver dependencies
+echo "Welcome to your shell scripting project" 
+echo "###############################################"
+apt update -y > /dev/null
+echo "## updating system ##"
+echo "###############################################"
+echo "Update Complete!"
+apt install -y wget unzip apache2 > /dev/null 
+
+# creating directory
+echo "###########################################"
+echo "create directory"
+mkdir -p /tmp/webfiles
+cd /tmp/webfiles
+wget https://www.tooplate.com/download/2096_individual
+echo "Web template downloaded" 
+cp 2096_individual/* /var/www/html/
+
+FREERAM=$(free -m | grep mem | awk '{print $4}')
+LOAD=`UPTIME`
+ROOFTREE=(df -h | grep /dev/root' | awk '{print $4}')
+
+echo "######################################"
+echo "available ram is $FREERAM MB"
+echo "######################################"
+echo "the current load is $LOAD"
+echo "######################################"
+echo "the available ROOT PARTITION is $ROOFTREE"
+
+
+# RECEIVE INPUTS
+
+echo "enter your name"
+read NAME
+echo "your $NAME NAME is uncommon"
+
+# password hide
+
+read -p 'username: ' USR
+read -sp 'password: ' PASS 
+
+echo "login successful: welcome user $USR."
+
+# CONDITIONALS
+
+read -p "enter a number: " num
+echo
+
+if  [ $NUM -gt 100 ]
+then
+	echo "your number is greater than a 100"
+else
+	echo "your number is less than a 1000"
+
+# FOR LOOP - to create multiple user accounts
+
+for i in {1..10}
+do 
+	username="user$i
+	password="p@ssword$i
+
+	sudo useradd -m  -s /bin/bash -p $(openssl passwd -1 $password) $username
+	echo "user $username executed with password: $password"
+	Done
+echo "user accounts created completed"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Checking free memory
+echo "memory utilisation"
+free -m
+
+# variables
+
+## skill="devops"
+## echo $skill
+
+# command substitution
+
+## list=`ls`
+## echo $list
+
+## list=$(ls)
+## echo $list
+
+# grep 
+
+## free -m | grep ubuntu
+## (free -m | grep mem | awk '{print $4}')
+
+
+
+
+
+
+
+
+
+
+ 

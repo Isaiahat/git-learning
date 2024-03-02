@@ -33,12 +33,11 @@ directly from the command line or called from other scripts.
 numbers, strings, and arrays. You can assign values to variables using the = operator, and access their values
 using the variable name preceded by a $ sign. <br>
 Example: Assigning value to a variable: <br>
-`name="John"`
-
-
-
+`name="John"` <br>
 Example: Retrieving value from a variable: <br>
-`echo $name`
+`echo $name` <br>
+
+![Alt text](<../Project 5/Image/1. variable.png>)
 
 
 2. Control Flow: Bash provides control flow statements like if-else, for loops, while loops, and case statements to
@@ -60,6 +59,8 @@ Example: Using if-else to execute script based on a conditions: <br>
 >else <br>
 	>echo "The number is zero." <br>
 >fi
+<br>
+![Alt text](<../Project 5/Image/2. control flow - if-else.png>) <br>
 
 <br>
 The piece of code prompts you to type a number and prints a statement stating the number is positive or negative.
@@ -75,8 +76,8 @@ Example: Iterating through a list using a for loop <br>
 > do <br>
 	> echo $i <br>
 > done
-
-
+<br>
+![Alt text](<../Project 5/Image/3. control flow - for loop.png>)
 
 
 3. Command Substitution: Command substitution allows you to capture the output of a command and use it as a
@@ -86,9 +87,11 @@ Example: Using backtick for command substitution <br>
 > $`current_date=date` $<br>
 
 Example: Using $()$ syntax for command substitution <br>
-> `current_date=$(date)`
-
-
+> `current_date=$(date)` <br>
+![Alt text](<../Project 5/Image/4. Command substitution.png>)
+<br>
+<br>
+![Alt text](<../Project 5/Image/5. Command substitution.png>)
 
 
 4. Input and Output: Bash provides various ways to handle input and output. You can use the read command to
@@ -135,6 +138,8 @@ greet "John"
 
 <br>
 
+![Alt text](<../Project 5/Image/7. input-output - functions.png>)
+
 ### Lets write our First Shell Script
 
 step 1: On your terminal, open a folder called shell-scripting using the command `mkdir shell-scripting`. <br> This will
@@ -162,7 +167,10 @@ step 5: Run the command `sudo chmod +x user-input.sh` this makes the file execut
 
 
 step 6: Run the script using the command `./user-input.sh`
+<br>
 
+![Alt text](<../Project 5/Image/8. Test shellscript.png>)
+<br>
 
 ## Directory Manipulation and Navigation
 
@@ -172,7 +180,7 @@ This script will display the current directory, create a new directory called "m
 create two files inside it, list the files, move back one level up, remove the "my_directory" and its contents, and finally
 list the files in the current directory again.
 Proceed by following the steps bellow:
-step 1: open a file named navigating-linux-filesystem.sh <br>
+step 1: open a file named navigating-linux.sh <br>
 step 2: paste the code block below into your file.
 >#!/bin/bash<br>
 >
@@ -224,6 +232,10 @@ step 2: paste the code block below into your file.
 step 3: Run the command sudo chmod +x navigating-linux-filesystem.sh to set execute permission on the file <br>
 
 step 4: Run your script using this command `./navigating-linux-filesystem.sh`
+<br>
+![Alt text](<../Project 5/Image/9. navigating-linux.png>)
+<br>
+
 
 ## File Operations and Sorting
 
@@ -289,6 +301,8 @@ step 3: Set execute permission on sorting.sh using this command `sudo chmod +x s
 step 4: Run your script using the command `./sorting.sh`
 <br>
 <br>
+![Alt text](<../Project 5/Image/10. sorting files.png>)
+<br>
 
 ## Working with Numbers and Calculations
 
@@ -342,6 +356,9 @@ step 3: Set execute permission on calculations.sh using the command: `sudo chmod
 <br>
 
 step 4: Run your script using this command: `./calculations.sh`
+<br>
+
+![Alt text](<../Project 5/Image/11. calculations.png>)
 
 <br>
 
@@ -394,3 +411,7 @@ step 2: Copy and paste the code block below into the file:<br>
 step 3: Set execute permission on backup.sh using this command `sudo chmod +x backup.sh`
 <br>
 step 4: Run your script using the command: `./backup.sh`
+<br>
+
+![Alt text](<../Project 5/Image/12. file backup.png>)
+

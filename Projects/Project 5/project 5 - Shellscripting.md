@@ -60,6 +60,7 @@ Example: Using if-else to execute script based on a conditions: <br>
 	>echo "The number is zero." <br>
 >fi
 <br>
+
 ![Alt text](<../Project 5/Image/2. control flow - if-else.png>) <br>
 
 <br>
@@ -77,6 +78,7 @@ Example: Iterating through a list using a for loop <br>
 	> echo $i <br>
 > done
 <br>
+
 ![Alt text](<../Project 5/Image/3. control flow - for loop.png>)
 
 
@@ -91,6 +93,7 @@ Example: Using $()$ syntax for command substitution <br>
 ![Alt text](<../Project 5/Image/4. Command substitution.png>)
 <br>
 <br>
+
 ![Alt text](<../Project 5/Image/5. Command substitution.png>)
 
 
@@ -233,6 +236,7 @@ step 3: Run the command sudo chmod +x navigating-linux-filesystem.sh to set exec
 
 step 4: Run your script using this command `./navigating-linux-filesystem.sh`
 <br>
+
 ![Alt text](<../Project 5/Image/9. navigating-linux.png>)
 <br>
 
@@ -301,6 +305,7 @@ step 3: Set execute permission on sorting.sh using this command `sudo chmod +x s
 step 4: Run your script using the command `./sorting.sh`
 <br>
 <br>
+
 ![Alt text](<../Project 5/Image/10. sorting files.png>)
 <br>
 

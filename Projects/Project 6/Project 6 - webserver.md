@@ -79,13 +79,15 @@ in 'mysql server' Security Groups. <br>
 For extra security, do not allow all IP addresses to reach your 'mysql server' -
 allow access only to the specific local IP address of your 'mysql client'.
 <br>
-![ ](<Images/4. Security inbound settings.png>) 
+
+![4  Security inbound settings](https://github.com/Isaiahat/git-learning/assets/148476503/10503e86-23b7-48e8-9171-93417509b60b) <br>
 
 5. You might need to configure MySQL server to allow connections from remote hosts. <br>
     > `sudo vi /etc/mysql/mysql.conf.d/mysqld.cnf` <br>
 Replace '`127.0.0.1`' to '`0.0.0.0`' like this:
 <br>
-![ ](<Images/5. MySQL Server conf file.png>)
+![5  MySQL Server conf file](https://github.com/Isaiahat/git-learning/assets/148476503/a5bc24d9-56be-4ec5-8c08-9a6582e3b1d2)
+
 <br>
 6. From mysql client Linux Server connect remotely to mysql server Database Engine without using SSH . You
 must use the mysql utility to perform this action.
@@ -97,4 +99,4 @@ If you see an output similar to the below image, then you have successfully comp
 fully functional MySQL Client-Server set up. Well Done! 
 <br>
 
-![alt text](<Images/6. Remote connection established.png>)
+![6  Remote connection established](https://github.com/Isaiahat/git-learning/assets/148476503/060e1704-575b-468e-a6af-e76f27912d66)

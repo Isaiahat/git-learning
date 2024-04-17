@@ -85,15 +85,17 @@ Next copy the ssh command below:
 previous step
 Click on enter and type yes when prompted. You should be connected to a terminal on your instance. See example output below: <br>
 <br>
->  ![alt text](<Images/6. remote connect to ec2.png>)
-><br>
+
+![6  remote connect to ec2](https://github.com/Isaiahat/git-learning/assets/148476503/f66c2961-bb66-4b9e-bdec-9681ed15c88f)
+<br>
 > Next, install apache with the command below 
 sudo apt update -y && sudo apt install apache2 -y`
 >
 >
 > Verify that apache is running using the command below:
 > `sudo systemctl status apache2` <br>
-![alt text](<Images/7. apache2 running status.png>)
+
+![7  apache2 running status](https://github.com/Isaiahat/git-learning/assets/148476503/62c931e9-1e3b-483f-a375-6be7a7b73488)
 
 <br>
 
@@ -165,11 +167,9 @@ Provision a new EC2 instance running ubuntu 22.04. Make sure port 80 is opened t
 Your can refer to step 1 through step 2 to refresh your memory.
 Next SSH into the instance. Again refer to step 3 for a refresher if needed.
 Install Nginx into the instance using the command below:<br>
-`sudo apt update -y && sudo apt install nginx -y` 
-<br>
+`sudo apt update -y && sudo apt install nginx -y` <br>
 > Verify that Nginx is installed with the command below:<br>
 > `sudo systemctl status nginx`
->
 >
 > Open Nginx configuration file with the command below: <br>
 `sudo vi /etc/nginx/conf.d/loadbalancer.conf` <br

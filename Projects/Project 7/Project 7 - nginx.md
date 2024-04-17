@@ -11,6 +11,7 @@ servers, optimize performance, and ensure high availability for your web applica
 
 ## Introduction to Load Balancing and Nginx
 
+![alt text](<Images/1. Load balancing depiction.png>)
 Load balancing is like having a team of helpers working together to make sure a big job gets done smoothly and efficiently.
 Imagine you have a lot of heavy boxes to carry, but you can't carry them all by yourself because they are too heavy.
 Load balancing is when you call your friends to help you carry the boxes. Each friend takes some of the boxes and carries
@@ -49,21 +50,24 @@ a load balancer distributing traffic across the webservers.
 > Under Key Pair, click on create new key pair if you do not have one. You can use the same key pair for all the
 instances you provision for this lesson:
 > 
-> And Finally, click on launch instance:
-
-<br>
+> And Finally, click on launch instance. <br>
+> Our EC2 instances are ready: <br>
+![alt text](<Images/2. EC2 instance launch.png>)
+<br> 
 
 > Step 2: Open Port 8000. We will be running our webservers on port 8000 while the load balancers runs on port 80. We
 need to open port 8000 to allow traffic from anywhere. To do this we need to add a rule to the security group of each of
 our webservers.
 >
-> Click on the instance ID to get the details of your EC2 instance,
+> Click on the instance ID to get the details of your EC2 instance, <br>
+> ![alt text](<Images/3. EC2 instance details.png>)
 > On the same page, scroll down and click on security:
->
+> <br>
+>![alt text](<Images/4. EC2 security .png>)
 > On the top of the page click on Action and select Edit inbound rules:
 > 
-> Add your rules and save them.
-
+> Add your rules and save them. <br>
+> ![alt text](<Images/5. port 8000 provisioning.png>)
 <br>
 
 > Step 3: Install Apache Webserver.
@@ -75,23 +79,25 @@ Connecting to the webserver: To connect to the webserver, click on your instance
 connect.
 Next copy the ssh command below:
 >
-> `copy-ssh`-command
+> `ssh -i "(key_pair)" (ec2user@ec2-xx-xx-xx-xx.(location).compute.amazonaws.com`
 >
 > Open a terminal in your local machine, cd into your Downloads folder. Paste the ssh command you copied in the
 previous step
-Click on enter and type yes when prompted. You should be connected to a terminal on your instance.
+Click on enter and type yes when prompted. You should be connected to a terminal on your instance. See example output below: <br>
 <br>
->
+>  ![alt text](<Images/6. remote connect to ec2.png>)
+><br>
 > Next, install apache with the command below 
 sudo apt update -y && sudo apt install apache2 -y`
 >
 >
 > Verify that apache is running using the command below:
-> `sudo systemctl status apache2`
+> `sudo systemctl status apache2` <br>
+![alt text](<Images/7. apache2 running status.png>)
 
 <br>
 
-> Step 4: Configure Apache to server a page showing its public IP.
+> Step 4: Configure Apache to serve a page showing its public IP.
 > 
 > We will start by configuring Apache webserver to serve content on port 8000 instead of its default which is port 80. 
 Then we will create a new index.html file. The file will contain code to display the public IP of the EC2 instance. We will then
@@ -106,12 +112,14 @@ override apache webserver's default html file with our new file.
 
 2. Add a new Listen directive for port 8000: First type i to 
 switch the editor to insert mode. Then add the listen
-directive. Then save your file.
+directive. Then save your file. <br>
+![alt text](<Images/8. add listen port 8000.png>)
  
 3. Next open the file /etc/apache2/sites-available 
 000-default.conf and change port 80 on the virtualhost to
 8000 like the screenshot below: <br>
-`sudo vi /etc/apache2/sites-available/000-default.conf`
+`sudo vi /etc/apache2/sites-available/000-default.conf` <br>
+![alt text](<Images/9. Add port 8000 to sites availale port.conf.png>)
 
 4. Close the file by first pressing the esc key on your 
 keyboard then the command below: <br>
@@ -132,17 +140,11 @@ your EC2 instance from AWS Management Console and replace
 the placeholder text for IP address in the html file.
 
 ```bash
-<!DOCTYPE html>
-<html>
-<head>
-<title>My EC2 Instance</title>
-</head>
-<body>
-<h1>Welcome to my EC2 instance</h1>
-<p>Public IP: YOUR_PUBLIC_IP</p>
-</body>
-</html>
-```
+Welcome to my practice sesh from $hostname
+``` 
+<br>
+
+![alt text](<Images/10. writing Index.html file.png>)
 
 3. Change file ownership of the index.html file with the command below: <br>
 `sudo chown www-data:www-data ./index.html`
@@ -156,6 +158,7 @@ the placeholder text for IP address in the html file.
 `sudo systemctl restart apache2`
 
 3. You should find a page on the browser like so: <br>
+![alt text](<Images/11. confirm html via ip address.png>)
 
 > Step 5: Configuring Nginx as a Load Balancer
 Provision a new EC2 instance running ubuntu 22.04. Make sure port 80 is opened to accept traffic from anywhere.
@@ -203,6 +206,10 @@ Test your configuration with the command below: <br>
 If there are no errors, restart Nginx to laod the new configuration with the command below: <br>
 `sudo systemctl restart nginx` <br>
 Paste the public IP address of Nginx load balancer, you should see the same webpages served by the webservers. <br>
+![ ](<Images/13. load balance 1.png>)
+<br>
+
+![alt text](<Images/14. load balance 2.png>)
 
 ## Load Balancing Algorithms
 
@@ -322,7 +329,7 @@ preventing denial-of-service attacks and controlling resource utilization. They 
 certain types of requests over others based on defined policies. <br>
 > 9. Web Application Firewall (WAF) Integration: Some load balancers offer integrated WAF functionality to protect
 web applications from common security threats like SQL injection, cross-site scripting (XSS), and other
-vulnerabilities. 
+vulnerabilities.
 
 These advanced features make load balancers powerful tools for optimizing application performance, ensuring high
 availability, and protecting applications from various threats and failures. They are essential components in modern,

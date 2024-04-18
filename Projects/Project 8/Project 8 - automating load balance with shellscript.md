@@ -58,28 +58,38 @@ sudo systemctl restart apache2
 Follow the steps below to run the script: <br>
 
 > Step 1: Provision an EC2 instance running ubuntu 20.04. You can refer to the course **Implementing load balancer with
-Nginx** for a refresher <br> 
+Nginx** for a refresher <br> ![1  ec2 instance ubuntu 20 04](https://github.com/Isaiahat/git-learning/assets/148476503/4b249ad1-8a94-48c5-899a-be8c71e3c921)
+
 
 > Step 2: Open port 8000 to allow traffic from anyhere using the security group. Again refer to the course mentioned above
-in step one for a refresher.
+in step one for a refresher. <br> ![2  port 8000 provisioning](https://github.com/Isaiahat/git-learning/assets/148476503/e5233f34-0d5f-47a0-bc64-acb0fc38e773)
 
-> Step 3: Connect to the webserver via the terminal using SSH cleint
+
+> Step 3: Connect to the webserver via the terminal using SSH cleint. <br> ![3  connect to ec2 via ssh client](https://github.com/Isaiahat/git-learning/assets/148476503/9c0ec771-0601-4f75-b0ff-e498646ba36e)
+
 
 > Step 4: Open a file, paste the script above and close the file using the command below: <br>
 `sudo vi install.sh` <br>
-To close the file type the **esc** key then **Shift** + :wqa!
+To close the file type the **esc** key then **Shift** + :wqa! <br> ![4  creating install script](https://github.com/Isaiahat/git-learning/assets/148476503/8f3810fc-5e1d-4864-833a-7148f6da8520)
+
 
 > Step 5: Change the permissions on the file to make an executable using the command below: <br>
 `sudo chmod +x install.sh`
 
 > Step 6: Run the shell script using the command below. Make sure you read the instructions in the shell script to learn how to use it.
-`./install.sh PUBLIC_IP`
+`./install.sh PUBLIC_IP` <br> ![5  chmod +x and run](https://github.com/Isaiahat/git-learning/assets/148476503/01c12849-8ec8-4859-8eb5-53602cc8823e) <br>
+> 
+> ![6  install sh run complete](https://github.com/Isaiahat/git-learning/assets/148476503/3ed7b814-4f79-47ca-a06c-542ace90f3eb) 
+
 
 ## **Deployment and configuration of Nginx as a Load Balancer using Shell script**
 ### Automate the Deployment of Nginx as a Load Balancer using Shell script
 Having successfully deployed and configured two webservers, We will move on to the laod balancer. As a prerequisite, we
 need to provision an EC2 instance running ubuntu 22.04, open port 80 to anywhere using the security group and connect
-to the load balancer via the terminal.
+to the load balancer via the terminal. <br>
+![7  ec2 instance ubuntu 22 04](https://github.com/Isaiahat/git-learning/assets/148476503/aab5da9a-19ca-44f6-965b-20a408c84862) <br>
+
+![8  port 80 provisioning](https://github.com/Isaiahat/git-learning/assets/148476503/9e0d8191-c707-4238-b54b-004ed942d4c5)
 
 
 ### Deploying and Configuring Nginx Load Balancer
@@ -131,9 +141,11 @@ sudo systemctl restart nginx
 ### Steps to Run the Shell Script.
 
 > Step 1: On your terminal, open a file nginx.sh using the command below: <br>
-`sudo vi nginx.sh`
+`sudo vi nginx.sh` 
 
-> Step 2: Copy and Paste the script inside the file
+
+> Step 2: Copy and Paste the script inside the file. <br>
+![9 creating loadbalancer script](https://github.com/Isaiahat/git-learning/assets/148476503/ac328436-b8b4-439f-92a6-871d2fff1289)
 
 > Step 3: Close the file using the command below: <br>
 type **esc** then **shift** + **:wqa!**
@@ -143,16 +155,29 @@ type **esc** then **shift** + **:wqa!**
 
 > Step 5: Run the script with the command below: <br>
 `./nginx.sh PUBLIC_IP Webserver-1 Webserver-2`
+> <br>
+![10  chmod +x and run](https://github.com/Isaiahat/git-learning/assets/148476503/6b007199-c001-4061-93c9-c5c3aa475a0a) <br>
+
+![11  nginx script run complete](https://github.com/Isaiahat/git-learning/assets/148476503/2ba732bc-7805-4a70-a26f-dd5e15a8b31a)
+
+
+
 
 ### Verifying the setup
 
-1. #### Screenshot for webserver one
+1. #### Screenshot for webserver 1
+  ![14  webserver 1](https://github.com/Isaiahat/git-learning/assets/148476503/45d2900e-8d85-4206-841f-21dca76c7eec) 
 
 
+2. #### Screenshot for webserver 2
+![15  webserver 2](https://github.com/Isaiahat/git-learning/assets/148476503/eb01e3ca-fcf7-4946-95af-7e60b6f357c2)
 
 
+3. #### Screenshot of load balancer web results
+![13  web result 2](https://github.com/Isaiahat/git-learning/assets/148476503/18665e95-12f4-4d08-b864-816dd7ebf898) <br>
 
-2. #### Screenshot of load balancer
+
+![12  web result 1](https://github.com/Isaiahat/git-learning/assets/148476503/58669776-7771-4b6b-8efa-86c9cab83fa2)
 
 
 #### Automation achieved!

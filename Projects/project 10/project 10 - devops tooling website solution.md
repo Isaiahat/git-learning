@@ -272,12 +272,15 @@ SELINUX=disabled then restart httpd.
 
 10. Update the website's configuration to connect to the database (in `/var/www/html/functions.php file`). <br> 
 Apply `tooling-db.sql` script to your database using this command
-`mysql -h <databse-private-ip> -u <dbusername> -p <db-pasword> < tooling-db.sql`
+`mysql -h <databse-private-ip> -u <dbusername> -p <db-database-name> < tooling-db.sql`
 11. Create in MySQL a new admin user with username: myuser and password: password: <br>
-INSERT INTO 'users' ('id', 'username', 'password', 'email', 'user_type', 'status') VALUES -> (1, 'myuser', '5f4dcc3b5aa765d61d8327deb882cf99', 'user@mail.com', 'admin', '1');
+``` bash
+INSERT INTO 'users' (`id`, `username`, `password`, `email`, `user_type`, `status`) VALUES -> (1, 'myuser', '5f4dcc3b5aa765d61d8327deb882cf99', 'user@mail.com', 'admin', '1');
+```
+
 12. Open the website in your browser http://`<Web-Server-Public-IP-Address-or-Public-DNS-Name>`/index.php
 and make sure you can login into the website with myuser user.
 
-Congratulations!
-You have just implemented a web solution for a DevOps team using LAMP stack with remote Database and NFS servers.
-
+--------------------------------------------------------------
+### Successfully implemented a web solution for a DevOps team using LAMP stack with remote Database and NFS servers.
+--------------------------------------------------------------

@@ -257,7 +257,8 @@ make sure the mount point will persist after reboot.
 ![17  Forked tooling repo](https://github.com/Isaiahat/git-learning/assets/148476503/20399495-cb76-4877-b0b4-65a8790da9d2)
 
 9. Deploy the tooling website's code to the Webserver. Ensure that the html folder from the repository is deployed to
-`/var/www/html`
+`/var/www/html` <br>
+![18  deployed folder from github ](https://github.com/Isaiahat/git-learning/assets/148476503/9fc1b11d-1e61-4f0c-831a-36e850961e7f)
 
 > Note 1: Do not forget to open TCP port 80 on the Web Server.
 
@@ -270,16 +271,31 @@ sudo vi /etc/sysconfig/selinux
 > and set
 SELINUX=disabled then restart httpd.
 
+![19  Disable selinux and restart apache](https://github.com/Isaiahat/git-learning/assets/148476503/8112082c-fcf6-4df0-bf5b-0601ee7bab2a)
+
+![19b  Disable selinux and restart apache](https://github.com/Isaiahat/git-learning/assets/148476503/dc8fea36-9a4c-45e9-a775-c9cf13c27a27)
+
 10. Update the website's configuration to connect to the database (in `/var/www/html/functions.php file`). <br> 
 Apply `tooling-db.sql` script to your database using this command
 `mysql -h <databse-private-ip> -u <dbusername> -p <db-database-name> < tooling-db.sql`
-11. Create in MySQL a new admin user with username: myuser and password: password: <br>
+
+![20a  tooling file conf copy](https://github.com/Isaiahat/git-learning/assets/148476503/b07eb059-c94c-447d-8934-e82dac9977b4)
+
+![21a  edit functions php - configuring webserver to connect to database](https://github.com/Isaiahat/git-learning/assets/148476503/16fbf544-3585-47fa-84b0-3c45d0185775)
+
+
+11. Create in MySQL a new admin user with username: and password: <br>
 ``` bash
 INSERT INTO 'users' (`id`, `username`, `password`, `email`, `user_type`, `status`) VALUES -> (1, 'myuser', '5f4dcc3b5aa765d61d8327deb882cf99', 'user@mail.com', 'admin', '1');
 ```
+![create username and psd in database](https://github.com/Isaiahat/git-learning/assets/148476503/852059a4-9aae-43f8-a2dc-935e3142f201)
 
 12. Open the website in your browser http://`<Web-Server-Public-IP-Address-or-Public-DNS-Name>`/index.php
 and make sure you can login into the website with myuser user.
+
+![23  web result](https://github.com/Isaiahat/git-learning/assets/148476503/ec85682f-1539-4bef-8707-401cee55e888)
+
+![25 web open](https://github.com/Isaiahat/git-learning/assets/148476503/79e36dae-a30f-4ea3-8bad-83e25b0a79e3)
 
 --------------------------------------------------------------
 ### Successfully implemented a web solution for a DevOps team using LAMP stack with remote Database and NFS servers.

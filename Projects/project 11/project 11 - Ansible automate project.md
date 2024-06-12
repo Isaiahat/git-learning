@@ -23,11 +23,11 @@ SSH into the Web servers directly and can only access it through a Jump Server -
 attack surface.
 
 On the diagram below the Virtual Private Network (VPC) is divided into two subnets - Public subnet has public IP
-addresses and Private subnet is only reachable by private IP addresses.
+addresses and Private subnet is only reachable by private IP addresses. <br>
 
------------------
------------------
+![1  Bastion host image depiction](https://github.com/Isaiahat/git-learning/assets/148476503/d192db58-06f1-461b-a8d8-0f9c22d9fbd3)
 
+<br>
 Later on, we will explore further on Bastion host in proper action. But for now, we will develop **Ansible** scripts to simulate the use of a `Jump box/Bastion
 host` to access our Web Servers.
 #### Tasks
@@ -38,7 +38,18 @@ host` to access our Web Servers.
 ### Step 1 - Install and Configure Ansible on EC2 Instance
 1. Update the Name tag on your Jenkins EC2 Instance to Jenkins-Ansible . We will use this server to run
 playbooks.
+
+<br>
+
+![2  github repo](https://github.com/Isaiahat/git-learning/assets/148476503/9c19ed3f-5435-409a-a406-0b7abbd8a119)
+
+<br>
+
 2. In your GitHub account create a new repository and name it ansible-config-mgt.
+<br>
+
+![2  github repo](https://github.com/Isaiahat/git-learning/assets/148476503/e5cff226-b52c-49cb-b96d-4c00a409d84d)
+
 3. Install Ansible (see: install Ansible with pip)
 ``` bash 
 sudo apt update
@@ -48,14 +59,24 @@ sudo apt install ansible
 Check your Ansible version by running:
 ``` bash
  ansible --version
-
 ```
+<br>
+
+![3  ansible version](https://github.com/Isaiahat/git-learning/assets/148476503/b33b06c8-2e07-44ab-8a2e-0cf20494465b)
+
+<br>
 
 4. Configure Jenkins build job to archive your repository content every time you change it - this will solidify your
 Jenkins configuration skills.
 > - Create a new Freestyle project ansible in Jenkins and point it to your 'ansible-config-mgt' repository.
 > - Configure a webhook in GitHub and set the webhook to trigger ansible build.
 > - Configure a Post-build job to save all ( ** ) files.
+<br>
+
+![4  github webhook](https://github.com/Isaiahat/git-learning/assets/148476503/4e44683d-f9fa-4207-a68d-3c3d07a0a18a)
+
+![4b  jenkins-github](https://github.com/Isaiahat/git-learning/assets/148476503/4e311545-02b4-4f06-82b9-df3f2da90b78)
+
 
 5. Test your setup by making some change in README.md file in master branch and make sure that builds starts
 automatically and Jenkins saves the files (build artifacts) in following folder
@@ -64,10 +85,11 @@ ls /var/lib/jenkins/jobs/ansible/builds/<build_number>/archive/
 ```
 > Note: Trigger Jenkins project execution only for main (or master) branch.
 
-Now your setup will look like this:
----------------------
----------
+Now your setup will look like this: <br>
 
+![5  setup depiction](https://github.com/Isaiahat/git-learning/assets/148476503/9668a1d1-4920-4d2d-b29d-5eb2a3b55610)
+
+<br>
 
 > **Tip:** Every time you stop/start your Jenkins-Ansible server - you have to reconfigure GitHub webhook to a new IP
 address, in order to avoid it, it makes sense to allocate an Elastic IP to your Jenkins-Ansible server (you have done it
@@ -87,6 +109,9 @@ and universal editor that will fully satisfy your needs - Visual Studio Code (VS
 
 3. Clone down your ansible-config-mgt repo to your Jenkins-Ansible instance
 `git clone <ansible-config-mgt repo link>` <br>
+
+![6  clone git](https://github.com/Isaiahat/git-learning/assets/148476503/0864bad1-462b-420f-a331-b066d5da2fbf)
+
 
 ## Develop ansible
 
@@ -130,6 +155,10 @@ Confirm the key has been added with the command below, you should see the name o
 ``` bash
 ssh-add -l
 ```
+<br>
+
+![7  ssh agent add](https://github.com/Isaiahat/git-learning/assets/148476503/814162e5-8869-4171-90d3-240f5407d826)
+
 
 Now, ssh into your `Jenkins-Ansible` server using ssh-agent
 ``` bash
@@ -148,6 +177,10 @@ Update your `inventory/dev.yml` file with this snippet of code:
 [lb]
 <Load-Balancer-Private-IP-Address> ansible_ssh_user=ubuntu
 ``` 
+<br>
+ 
+![8  edit dev yml file](https://github.com/Isaiahat/git-learning/assets/148476503/4098f8a7-628a-4266-a1e6-a78092eb5b5e)
+
 
 ## Create a playbook
 
@@ -182,6 +215,10 @@ apt:
 name: wireshark
 state: latest
 ```
+<br>
+
+![9  edit common yml file](https://github.com/Isaiahat/git-learning/assets/148476503/6cdcdfb3-5a9d-4e44-b1e7-4a0c7556bb54)
+
 
 Examine the code above and try to make sense out of it. This playbook is divided into two parts, each of them is intended to
 perform the same task: install wireshark utility (or make sure it is updated to the latest version) on your RHEL 8 and
@@ -233,16 +270,31 @@ the command:
 cd ansible-config-mgt
 ```
 
+![10a  connect ec2 to vs code](https://github.com/Isaiahat/git-learning/assets/148476503/18dc8839-e6a1-46b0-91f6-2202194e9913)
+
+<br>
+
+![10b  connected](https://github.com/Isaiahat/git-learning/assets/148476503/ff7d603f-f7c0-49b9-be0d-1fa704a4ea35)
+
+
 ``` bash
 ansible-playbook -i inventory/dev.yml playbooks/common.yml
 ```
+
+**Executed below:** <br>
+
+![11  common yml played](https://github.com/Isaiahat/git-learning/assets/148476503/d9fb038d-d98c-4bea-8cdc-a49b4aa4e66b)
+
+![11b  common yml played](https://github.com/Isaiahat/git-learning/assets/148476503/c6c8158c-ea72-4fbe-bddf-6f5d772894ab)
+
 
 > **Note:** Make sure you're in your ansible-config-mgt directory before you run the above command.
 You can go to each of the servers and check if wireshark has been installed by running `which wireshark` or `wireshark
 --version`
 Your updated with Ansible architecture now looks like this:
-----------------
-----------------
+
+![12  ansible setup architecture](https://github.com/Isaiahat/git-learning/assets/148476503/73e97118-3e3f-478a-b7e5-8cee60a9e77e)
+
 
 Update your ansible playbook with some new Ansible tasks and go through the full `checkout -> change codes ->
 commit -> PR -> merge -> build -> ansible-playbook` cycle again to see how easily you can manage a servers fleet of

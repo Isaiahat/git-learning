@@ -40,3 +40,7 @@ to connect to another VM, use: ssh -i (pemfile) (username)(public host)
 
 17. variables to store values
 18. $ to name a variable.
+
+
+
+

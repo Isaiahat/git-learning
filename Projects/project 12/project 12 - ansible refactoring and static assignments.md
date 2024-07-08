@@ -34,7 +34,7 @@ sudo mkdir /home/ubuntu/ansible-config-artifact
 
 2. Change permissions to this directory, so Jenkins could save files there - 
 ``` bash
-chmod -R 0777 /home/ubuntu/ansibleconfig-artifact
+chmod -R 0777 /home/ubuntu/ansible-config-artifact
 ```
 
 3. Go to Jenkins web console -> Manage Jenkins -> Manage Plugins -> on Available tab search for `Copy Artifact`
@@ -49,7 +49,7 @@ only last 2 or 5 build results. You can also make this change to your ansible jo
 
 6. The main idea of `save_artifacts` project is to save artifacts into `/home/ubuntu/ansible-config-artifact`
 directory. To achieve this, create a Build step and choose `Copy artifacts` from other project, specify
-ansible as a source project and `/home/ubuntu/ansible-config-artifact` as a target directory.
+ansible as a source project and `ls` as a target directory.
 
 7. Test your set up by making some change in `README.MD` file inside your `ansible-config-mgt` repository (right
 inside master branch).

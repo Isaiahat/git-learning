@@ -49,12 +49,30 @@ only last 2 or 5 build results. You can also make this change to your ansible jo
 
 6. The main idea of `save_artifacts` project is to save artifacts into `/home/ubuntu/ansible-config-artifact`
 directory. To achieve this, create a Build step and choose `Copy artifacts` from other project, specify
-ansible as a source project and `ls` as a target directory.
+ansible as a source project and `/home/ubuntu/ansible-config-artifact` as a target directory.
 
-7. Test your set up by making some change in `README.MD` file inside your `ansible-config-mgt` repository (right
+![2  build steps for copy-artifact job](https://github.com/Isaiahat/git-learning/assets/148476503/5e9e3f93-cf08-497c-a169-566e3df03fcb)
+
+<br>
+
+![2b  configure save_artifacts](https://github.com/Isaiahat/git-learning/assets/148476503/c1a0bde1-5138-4ac8-ba71-e9c81ea58de2)
+
+<br>
+
+![2c  configure save_artifacts](https://github.com/Isaiahat/git-learning/assets/148476503/823bea48-bab3-44b1-bc35-60b8e112b5d5)
+
+<br>
+
+![2d  build steps for save_artifacts](https://github.com/Isaiahat/git-learning/assets/148476503/816cce60-d9bf-4522-bf9a-825185f8e327)
+
+
+8. Test your set up by making some change in `README.MD` file inside your `ansible-config-mgt` repository (right
 inside master branch).
 
 If both Jenkins jobs have completed one after another - you shall see your files inside `/home/ubuntu/ansible-configartifact` directory and it will be updated with every commit to your master branch.
+
+![2e  save_artifact job successful](https://github.com/Isaiahat/git-learning/assets/148476503/bd934c78-ddbf-492f-8a99-fae76ddc4279)
+
 
 Now your Jenkins pipeline is more neat and clean.
 
@@ -149,6 +167,17 @@ ansible-playbook -i inventory/dev.yml playbooks/site.yaml
 
 Make sure that `wireshark` is deleted on all the servers by running `wireshark --version`
 
+![3a  wireshark pre-installed](https://github.com/Isaiahat/git-learning/assets/148476503/2584b43e-cc33-4301-ad68-36ea24876da7)
+
+<br>
+
+![3b  common-del yml successful](https://github.com/Isaiahat/git-learning/assets/148476503/564a9fed-2c09-44f6-bf2b-d235aa974444)
+
+<br>
+
+![3c  confirmation from webserver](https://github.com/Isaiahat/git-learning/assets/148476503/28f29522-69e2-4ff4-99f0-9e9b4af469fc)
+
+
 Now we have learned how to use `import_playbooks` module and we have a ready solution to install/delete packages on
 multiple servers with just one command.
 
@@ -175,6 +204,9 @@ mkdir roles
 cd roles
 ansible-galaxy init webserver
 ```
+
+![4  Create roles successfully](https://github.com/Isaiahat/git-learning/assets/148476503/052bf4af-77f6-4f13-b3ec-b891b00f4c73)
+
 
 - Create the directory/files structure manually. <br>
 > **Note:** You can choose either way, but since you store all your codes in GitHub, it is recommended to create folders and files there rather than locally on Jenkins-Ansible server.
@@ -215,6 +247,9 @@ After removing unnecessary directories and files, the `roles` structure should l
 └── templates
 ``` 
 
+![4b  roles_webserver dir tree configured ](https://github.com/Isaiahat/git-learning/assets/148476503/3bdf7404-ea4e-4e0b-960c-f4534089f69b)
+
+
 3. Update your inventory `ansible-config-mgt/inventory/uat.yml` file with IP addresses of your 2 UAT Web
 servers
 > **NOTE:** Ensure you are using `ssh-agent` to ssh into the Jenkins-Ansible instance just as you have done in project 11;
@@ -227,7 +262,10 @@ servers
 4. In `/etc/ansible/ansible.cfg` file, uncomment `roles_path` string and provide a full path to your roles directory
 `roles_path = /home/ubuntu/ansible-config-mgt/roles`, so Ansible could know where to find configured roles.
 
-5. It is time to start adding some logic to the webserver role.
+![4c  specify roes_path in ansible cfg](https://github.com/Isaiahat/git-learning/assets/148476503/b63be015-f2e2-42f8-a5c2-424f8d6ffd71)
+
+
+6. It is time to start adding some logic to the webserver role.
 <br> Go into tasks directory, and within the `main.yml` file,
 start writing configuration tasks to do the following:
 
@@ -299,6 +337,11 @@ Commit your changes, create a Pull Request and merge them to `master` branch, ma
 consequent Jenkins jobs, they ran successfully and copied all the files to your `Jenkins-Ansible` server into
 `/home/ubuntu/ansible-config-mgt/` directory.
 
+![5b  Jenkins triggered](https://github.com/Isaiahat/git-learning/assets/148476503/17285254-1833-4a90-97de-23f56bfb7ffb)
+
+![5c  save_artifact triggered](https://github.com/Isaiahat/git-learning/assets/148476503/01560915-f2f8-49e4-937d-699679fa8558)
+
+
 Now run the playbook against your uat inventory and see what happens: <br>
 > **NOTE:** Before running your playbook, ensure you have tunneled into your `Jenkins-Ansible server` via `ssh-agent` 
 ``` bash
@@ -306,6 +349,9 @@ cd /home/ubuntu/ansible-config-mgt
 
 ansible-playbook -i /inventory/uat.yml playbooks/site.yaml
 ```
+
+![5a  ansible executed roles on uat servers](https://github.com/Isaiahat/git-learning/assets/148476503/9eadd409-106c-4834-8b40-94f04c545601)
+
 
 You should be able to see both of your UAT Web servers configured and you can try to reach them from your browser:
 ``` bash
@@ -318,9 +364,17 @@ or
 http://<Web1-UAT-Server-Public-IP-or-Public-DNS-Name>/index.php
 ```
 
+![5d  uat server 1](https://github.com/Isaiahat/git-learning/assets/148476503/99684038-93f9-4745-85a3-6baee388ff40)
+
+
+![5e  uat server 2](https://github.com/Isaiahat/git-learning/assets/148476503/c2130e33-ca12-4bf2-81f0-b0c00368f0b4)
+
+
 Your Ansible architecture now looks like this:
 
+![6  Architecture depiction](https://github.com/Isaiahat/git-learning/assets/148476503/fb89aa8d-7f81-4cc5-ae03-5f9516f943ed)
+
 -------------------------------------
-In Project 13, you will see the difference between Static and Dynamic assignments.
+In Project 13, we will see the difference between Static and Dynamic assignments.
 Congratulations!
 You have learned how to deploy and configure UAT Web Servers using Ansible imports and roles!

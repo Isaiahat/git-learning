@@ -87,6 +87,9 @@ Your layout should now look like this. <br>
 └── webservers.yml
 ```
 
+![1  repo directory structure](https://github.com/user-attachments/assets/0044ca55-3dab-4eac-8447-ff3a667b3e6d)
+
+
 Now paste the instruction below into the env-vars.yml file.
 
 
@@ -149,9 +152,6 @@ import_playbook: ../static-assignments/common.yml
 include: ../dynamic-assignments/env-vars.yml
 tags:
 - always
-Copy Below Code
-5/12/24, 6:23 AM Learning Path - Project - Darey.io
-https://app.dareyio.com/learning/project 4/9
 - hosts: webservers
 - name: Webserver assignment
 import_playbook: ../static-assignments/webservers.yml
@@ -192,6 +192,10 @@ mv geerlingguy.mysql/ mysql
 
 Read` README.md` file, and edit roles configuration to use correct credentials for MySQL required for the `tooling`
 website. <br>
+
+![2  mysql readme file](https://github.com/user-attachments/assets/8a6499d7-f65b-4c44-93bf-e8c14fe98f9d)
+
+
 Now it is time to upload the changes into your GitHub:
 
 ``` bash
@@ -199,6 +203,9 @@ git add.
 git commit -m "Commit new role files into GitHub"
 git push --set-upstream origin roles-feature
 ```
+
+![3  git push roles-feature successful](https://github.com/user-attachments/assets/9c5829c8-a4ec-47ff-8cb4-983568d2b328)
+<br>
 
 Now, if you are satisfied with your codes, you can create a Pull Request and merge it to `main` branch on GitHub.
 
@@ -210,16 +217,27 @@ We want to be able to choose which Load Balancer to use, Nginx or Apache, so we 
 
 2. Apache
 
+![4  create nginx and apache roles](https://github.com/user-attachments/assets/c275d086-7d81-42fe-8579-817da1d06db9)
+
+
 With your experience on Ansible so far you can:
 - Decide if you want to develop your own roles, or find available ones from the community.
 
-- Update both static-assignment and site.yml files to refer the roles
+- Update both static-assignment and site.yml files to refer the roles <br>
+![4b  update static assignments with nginx and apache roles](https://github.com/user-attachments/assets/9e53e941-ae6d-46af-8575-ffccfd8ae236)
+
+
 > **Important Hints:**
 > - Since you cannot use both Nginx and Apache load balancer, you need to add a condition to enable either one - this is
 where you can make use of variables.
 > - Declare a variable in `defaults/main.yml` file inside the Nginx and Apache roles. <br> Name each variables
 `enable_nginx_lb` and `enable_apache_lb` respectively.
-> - Set both values to false like this `enable_nginx_lb: false` and `enable_apache_lb: false`.
+> - Set both values to false like this `enable_nginx_lb: false` and `enable_apache_lb: false`. <br>
+![5c  hint - declare variable in defaults_main yml file inside the nginx and apache roles dir respectively ](https://github.com/user-attachments/assets/380aca0d-3554-4783-87a0-6a23aa8b809a) <br>
+<br>
+![5d  hint - declare variable in defaults_main yml file inside the nginx and apache roles dir respectively ](https://github.com/user-attachments/assets/d440c929-9a13-43f8-bba4-4513b48f541c)
+
+
 > - Declare another variable in both roles `load_balancer_is_required` and set its value to false as well
 Update both assignment and `site.yml` files respectively.
 
@@ -232,6 +250,10 @@ roles:
 - { role: apache, when: enable_apache_lb and load_balancer_is_required }
 ```
 
+![5e  create loadbalancers yml file](https://github.com/user-attachments/assets/d38a759c-56a8-44e7-afca-f19020a5f45d)
+
+
+
 `site.yml` file
 ``` bash
 - name: Loadbalancers assignment
@@ -239,6 +261,8 @@ hosts: lb
 - import_playbook: ../static-assignments/loadbalancers.yml
 when: load_balancer_is_required
 ```
+
+
 
 Now you can make use of `env-vars\uat.yml` file to define which loadbalancer to use in UAT environment by setting
 respective environmental variable to `true`. <br>
@@ -249,10 +273,14 @@ enable_nginx_lb: true
 load_balancer_is_required: true
 ```
 
+![5f  edit uat yml file and enable nginx](https://github.com/user-attachments/assets/e4d771d0-4887-41e2-93f0-af5e88eeb5e0)
+
+
 The same must work with `apache` LB, so you can switch it by setting respective environmental variable to true and
 other to false.
 
 To test this, you can update inventory for each environment and run Ansible against each environment.
+
 
 
 ##### Congratulations!

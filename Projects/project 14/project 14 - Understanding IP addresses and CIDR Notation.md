@@ -40,6 +40,9 @@ ICANN is a non-profit organization that was established in the United States in 
 security of the internet and allow it to be usable by all. Each time anyone registers a domain on the internet, they go
 through a domain name registrar, who pays a small fee to ICANN to register the domain.
 
+![1  IP address 4x octet depiction](https://github.com/user-attachments/assets/11aa206f-8a62-450e-8463-cc892000b0ba)
+
+
 ## Subnetting and Subnet Masks
 
 ### What is Subnetting?
@@ -49,6 +52,9 @@ IP Subnetting designates high-order bits from the host as part of the network pr
 smaller subnets.
 It also helps you to reduce the size of the routing tables, which is stored in routers. This method also helps you to extend
 the existing IP address base & restructures the IP address.
+
+![2  IP address subnet depiction](https://github.com/user-attachments/assets/73b8a97a-4ffa-4e69-a6cb-3b1e17aee171)
+
 
 #### What is Subnet Mask?
 
@@ -66,6 +72,9 @@ internet. Every machine, server, and end-user device that connects to the intern
 address, associated with it. Devices find and communicate with one another by using these IP addresses. Organizations
 use CIDR to allocate IP addresses flexibly and efficiently in their networks. It represents a block of IP addresses, to get the number of addresses a CIDR block represent, you calculate 2^(32-prefix), where prefix is the number after the slash.<br> For
 instance, `/16` contains 2^32-16=2^16=65,536.
+
+![3  CIDR and address aggregation](https://github.com/user-attachments/assets/177916da-56c6-4421-bbdd-aee05fce6cb9)
+
 
 ### IP Address Aggregator
 
@@ -91,7 +100,13 @@ This addressing method divides the IP address into five separate classes based o
 Here, classes A, B, C offers addresses for networks of three distinct network sizes. Class D is only used for multicast, and
 class E reserved exclusively for experimental purposes.
 
+![4a  Ip address ranges and classes](https://github.com/user-attachments/assets/894a1d2e-8ca1-4544-84f3-59b424f939e8)
+
+
 **ip-address-class**
+
+![4b  Ip address classes](https://github.com/user-attachments/assets/8f88e2d2-78dc-4596-9ade-874e2ba415e1)
+
 
 Let’s see each of the network classes in detail:
 
